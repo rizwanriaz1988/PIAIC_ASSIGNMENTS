@@ -1,3 +1,4 @@
+#! /usr/bin/env node
 /*
 ------Question 01 :----------
 prepare a quiz with inquirer and chalk.
@@ -19,7 +20,4 @@ for (let i = 0; i < q_bank.length; i++) {
     }
 }
 let percentage = Math.round(score / q_bank.length * 100);
-// console.log(chalk.red("Insha Allah, in " + (60 - answers.age) + " years you will be 60 years old."));
-// console.log(chalk.red(`${answers.addition}`));
-// console.log(chalk.red(`${answers.key}`));
 console.log(`${chalk.whiteBright(`Questions Attempted: ${q_bank.length}`)}\n${chalk.yellow(`Correct Answered: ${score}`)}\n${chalk.greenBright(`Percentage: ${percentage}%`)}`);
