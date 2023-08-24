@@ -12,12 +12,12 @@ Next, in package.json add the new field bin:
 	"quiz": "dist/index.js"
 },
 
-"quiz" is package name here which will be used to call .i.e. <npx quiz>
+"quiz" is package name here which will be used to call .i.e. "npx quiz"
 
-first give command <npm install -g>
-secondly give command <npx quiz> to run the project (locally)
+first give command "npm install -g"
+secondly give command "npx quiz" to run the project (locally)
 
 To publish on npm:
-first <npm login>
-second <npm publish>
+first "npm login"
+second "npm publish"
 
