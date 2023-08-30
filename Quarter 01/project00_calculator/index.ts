@@ -1,20 +1,22 @@
 import inquirer from "inquirer";
 import chalk from "chalk";
 import chalkAnimation from "chalk-animation";
+import { resolve } from "path";
 
 //chalk animations
 
-async function sleep(ms:number) {
-    await new Promise((resolve) => setTimeout(resolve, ms));
-  }
-  
-  
 
 async function welcome(){
-chalkAnimation.rainbow("\n      C A L C U L A T O R"); // Animation starts
-// setTimeout(() => {
-    // rainbow.stop(); // Animation stops
-    await sleep(500);
+    let anime = chalkAnimation.rainbow("\n      C A L C U L A T O R"); // Animation starts
+    await new Promise<void>((resolve, reject) => {          // this promise await will ensure the execution of this code i.e. settimeout(), without await it will not ensure the completion of promise
+        
+        setTimeout(()=>{
+        anime.stop()
+        resolve()           //this will go along with settimeout to waiting 
+        },1000)
+        
+    })
+
     console.log(`${chalk.white(` 
      _____________________
     |  _________________  |
@@ -30,11 +32,8 @@ chalkAnimation.rainbow("\n      C A L C U L A T O R"); // Animation starts
     | | . | 0 | = | | / | |
     | |___|___|___| |___| |
     |_____________________|\n`)}`)
-
-// return
+    
 };
-
-
 
 
 //take and validate input from prompt
@@ -116,6 +115,5 @@ async function startAgain(){
 }
 
 // function call
-// welcome()
 startAgain()
 

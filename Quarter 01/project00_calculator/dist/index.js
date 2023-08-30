@@ -1,17 +1,15 @@
-#! /usr/bin/env node
-
 import inquirer from "inquirer";
 import chalk from "chalk";
 import chalkAnimation from "chalk-animation";
 //chalk animations
-async function sleep(ms) {
-    await new Promise((resolve) => setTimeout(resolve, ms));
-}
 async function welcome() {
-    chalkAnimation.rainbow("\n      C A L C U L A T O R"); // Animation starts
-    // setTimeout(() => {
-    // rainbow.stop(); // Animation stops
-    await sleep(500);
+    let anime = chalkAnimation.rainbow("\n      C A L C U L A T O R"); // Animation starts
+    await new Promise((resolve, reject) => {
+        setTimeout(() => {
+            anime.stop();
+            resolve(); //this will go along with settimeout to waiting 
+        }, 1000);
+    });
     console.log(`${chalk.white(` 
      _____________________
     |  _________________  |
@@ -27,7 +25,6 @@ async function welcome() {
     | | . | 0 | = | | / | |
     | |___|___|___| |___| |
     |_____________________|\n`)}`);
-    // return
 }
 ;
 //take and validate input from prompt
@@ -106,6 +103,5 @@ async function startAgain() {
     } while (again.againSelect == "Y" || again.againSelect == "y");
 }
 // function call
-// welcome()
 startAgain();
 //# sourceMappingURL=index.js.map
