@@ -1,3 +1,5 @@
+#! /usr/bin/env node
+
 import inquirer from "inquirer";
 import chalk from "chalk";
 import chalkAnimation from "chalk-animation";
@@ -104,4 +106,3 @@ async function startAgain() {
 }
 // function call
 startAgain();
-//# sourceMappingURL=index.js.map
