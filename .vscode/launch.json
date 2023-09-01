@@ -4,14 +4,17 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+
         {
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
+            "console": "integratedTerminal",
+            // "console": "externalTerminal",
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}\\Quarter 01\\project00_calculator\\index.ts",
+            "program": "${workspaceFolder}\\Quarter 01\\project01_number_guessing-game\\index.ts",
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
             ]
