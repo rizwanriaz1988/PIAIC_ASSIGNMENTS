@@ -1,14 +1,14 @@
 {
-  "name": "project08_quiz_rizi",
+  "name": "project05_word_counter_rizi",
   "type": "module",
-  "version": "3.0.0",
-  "description": "",
+  "version": "1.0.0",
+  "description": "The user will enter a english paragraph and all that is needed is to just to implement counting characters and words without white spaces.",
   "main": "index.js",
+  "bin": {
+    "project05_word_counter_rizi": "dist/index.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "bin": {
-    "project08_quiz_rizi": "dist/index.js"
   },
   "author": "",
   "license": "ISC",

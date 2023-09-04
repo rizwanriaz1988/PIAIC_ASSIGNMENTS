@@ -14,7 +14,7 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}\\Quarter 01\\project08_quiz\\index.ts",
+            "program": "${workspaceFolder}\\Quarter 01\\project05_word_counter\\index.ts",
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
             ]
