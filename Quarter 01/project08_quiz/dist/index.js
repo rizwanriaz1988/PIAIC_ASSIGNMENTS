@@ -1,4 +1,3 @@
-#! /usr/bin/env node
 import inquirer from "inquirer";
 import chalk from "chalk";
 import q_bank from "./question bank.js";
@@ -16,20 +15,31 @@ async function welcome(param) {
 }
 async function operation() {
     let score = 0;
-    for (let i = 0; i < q_bank.length; i++) {
-        let answers = await inquirer.prompt([{
-                name: "ans",
-                type: q_bank[i].type,
-                message: `${chalk.redBright(`${q_bank[i].message}`)}`,
-                choices: q_bank[i].choices,
+    let quiz_questions = 10;
+    var rand_q_array = [];
+    if (quiz_questions <= q_bank.length) {
+        for (let i = 0; i < quiz_questions; i++) {
+            do {
+                var rand_q = Math.floor(Math.random() * q_bank.length);
+            } while (rand_q_array.includes(rand_q));
+            rand_q_array.push(rand_q);
+            let answers = await inquirer.prompt([{
+                    name: "ans",
+                    type: q_bank[rand_q].type,
+                    message: `${chalk.redBright(`${q_bank[rand_q].message}`)}`,
+                    choices: q_bank[rand_q].choices,
+                }
+            ]);
+            if (answers.ans == q_bank[rand_q].key) {
+                score++;
             }
-        ]);
-        if (answers.ans == q_bank[i].key) {
-            score++;
         }
+        let percentage = Math.round(score / quiz_questions * 100);
+        console.log(`${chalk.whiteBright(`Questions Attempted: ${quiz_questions}`)}\n${chalk.yellow(`Correct Answered: ${score}`)}\n${chalk.greenBright(`Percentage: ${percentage}%`)}`);
     }
-    let percentage = Math.round(score / q_bank.length * 100);
-    console.log(`${chalk.whiteBright(`Questions Attempted: ${q_bank.length}`)}\n${chalk.yellow(`Correct Answered: ${score}`)}\n${chalk.greenBright(`Percentage: ${percentage}%`)}`);
+    else {
+        console.log(chalk.redBright("Error: Reduce No Of Questions"));
+    }
 }
 async function again() {
     do {
@@ -44,4 +54,5 @@ async function again() {
     } while (again_ask.ask == "Y" || again_ask.ask == "y");
 }
 again();
+// console.log(rand_q_array) 
 //# sourceMappingURL=index.js.map

@@ -31,6 +31,24 @@ let q_bank = [
     },
     {
         type: "list",
+        message: "17 + 3 = ___?",
+        choices: [10, 17, 20, 9],
+        key: 20
+    },
+    {
+        type: "list",
+        message: "5 + 3 = ___?",
+        choices: [10, 7, 8, 9],
+        key: 8
+    },
+    {
+        type: "list",
+        message: "7 + 6 = ___?",
+        choices: [10, 13, 28, 9],
+        key: 13
+    },
+    {
+        type: "list",
         message: "11 * 3 = ___?",
         choices: [14, 17, 33, 29],
         key: 33
@@ -40,6 +58,18 @@ let q_bank = [
         message: "6 * 3 = ___?",
         choices: [14, 18, 33, 29],
         key: 18
+    },
+    {
+        type: "list",
+        message: "2 * 3 = ___?",
+        choices: [14, 6, 33, 29],
+        key: 6
+    },
+    {
+        type: "list",
+        message: "5 * 3 = ___?",
+        choices: [14, 15, 33, 29],
+        key: 15
     },
     {
         type: "list",
