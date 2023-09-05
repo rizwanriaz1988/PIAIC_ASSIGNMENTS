@@ -24,11 +24,16 @@ async function operation() {
     let words = 0;
     let character = 0;
     result.map((sys) => {
-        words++;
-        let char = sys.split("");
-        char.map(() => {
-            character++;
-        });
+        if (sys != "") {
+            words++;
+            let char = sys.split("");
+            char.map(() => {
+                character++;
+            });
+        }
+        else {
+            return;
+        }
     });
     //display of results
     console.log(`Words = ${words}`);
@@ -47,3 +52,4 @@ async function again() {
     } while (again_ask.ask == "Y" || again_ask.ask == "y");
 }
 again();
+//# sourceMappingURL=index.js.map

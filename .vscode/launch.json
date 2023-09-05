@@ -16,7 +16,7 @@
             ],
             "program": "${workspaceFolder}\\Quarter 01\\project05_word_counter\\index.ts",
             "outFiles": [
-                "${workspaceFolder}/**/*.js"
+                "${workspaceFolder}/**/*index.js"
             ]
         }
     ]

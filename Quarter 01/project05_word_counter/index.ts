@@ -30,13 +30,17 @@ async function operation(){
     let words=0
     let character = 0
     result.map((sys:any)=>{
-        words++
-    let char = sys.split("")
+        if(sys != ""){
+            words++
+            let char = sys.split("")    
+            char.map(()=>{
+            character++
+            })
+        }else{
+            return
+        }
+    })
     
-    char.map(()=>{
-    character++
-    })
-    })
 
     //display of results
 console.log(`Words = ${words}`)
