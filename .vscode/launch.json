@@ -14,7 +14,7 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}\\Quarter 01\\project05_word_counter\\index.ts",
+            "program": "${workspaceFolder}\\Quarter 01\\project03_todo_list\\index.ts",
             "outFiles": [
                 "${workspaceFolder}/**/*index.js"
             ]

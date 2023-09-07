@@ -1,3 +1,4 @@
+#! /usr/bin/env node
 import inquirer from "inquirer";
 import chalkAnimation from "chalk-animation";
 let welcome_msg = "\n<== Words & Characters Counter ==>\n";
