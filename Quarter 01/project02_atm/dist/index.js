@@ -67,16 +67,16 @@ async function transOperations(authnAnswers, operationAnswers) {
     let currentUserAmount = parseFloat(amounts[userIndex]);
     let newAmount;
     if (operationAnswers.operation === "Check Balance") {
-        console.log(`${chalk.greenBright(`Current Balance`)} = ${chalk.yellowBright(currentUserAmount)}`);
+        console.log(`${chalk.greenBright(`Current Balance`)} = ${chalk.yellowBright(currentUserAmount.toFixed(3))}`);
     }
     else if (operationAnswers.depositCash) {
-        console.log(`${chalk.redBright(`Previous Balance`)} = ${chalk.yellowBright(currentUserAmount)}`);
+        console.log(`${chalk.redBright(`Previous Balance`)} = ${chalk.yellowBright(currentUserAmount.toFixed(3))}`);
         currentUserAmount = currentUserAmount + parseFloat(operationAnswers.depositCash);
         amounts[userIndex] = currentUserAmount;
-        console.log(`${chalk.greenBright(`New Balance`)} = ${chalk.yellowBright(currentUserAmount)}`);
+        console.log(`${chalk.greenBright(`New Balance`)} = ${chalk.yellowBright(currentUserAmount.toFixed(3))}`);
     }
     else if (operationAnswers.withDrawAmount) {
-        console.log(`${chalk.redBright(`Previous Balance`)} = ${chalk.yellowBright(currentUserAmount)}`);
+        console.log(`${chalk.redBright(`Previous Balance`)} = ${chalk.yellowBright(currentUserAmount.toFixed(3))}`);
         let enteredAmount = parseFloat(operationAnswers.withDrawAmount);
         newAmount = currentUserAmount - enteredAmount;
         if (newAmount < 0) {
@@ -84,7 +84,7 @@ async function transOperations(authnAnswers, operationAnswers) {
         }
         else {
             amounts[userIndex] = newAmount;
-            console.log(`${chalk.greenBright(`New Balance`)} = ${chalk.yellowBright(newAmount)}`);
+            console.log(`${chalk.greenBright(`New Balance`)} = ${chalk.yellowBright(newAmount.toFixed(3))}`);
         }
     }
 }

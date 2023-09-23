@@ -1,6 +1,6 @@
 {
   "name": "project02_atm_rizi",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "type": "module",
   "bin": {
     "project02_atm_rizi": "dist/index.js"
