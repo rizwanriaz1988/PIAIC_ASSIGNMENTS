@@ -14,7 +14,7 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}\\Quarter 01\\project09_countdown_timer\\index.ts",
+            "program": "${workspaceFolder}\\Quarter 01\\project02_atm\\index.ts",
             "outFiles": [
                 "${workspaceFolder}/**/*index.js"
             ]
