@@ -5,6 +5,7 @@
     "version": "0.2.0",
     "configurations": [
 
+
         {
             "type": "node",
             "request": "launch",
@@ -14,9 +15,11 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}\\Quarter 01\\project02_atm\\index.ts",
+            "program": "${workspaceFolder}\\Quarter 01\\project06_student_management_system\\src\\index.ts",
             "outFiles": [
                 "${workspaceFolder}/**/*index.js"
+                // "${workspaceFolder}/**/*enrollingQuestions.js",
+                // "${workspaceFolder}/**/*coursesList.js"
             ]
         }
     ]
