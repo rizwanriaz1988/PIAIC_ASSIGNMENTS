@@ -58,7 +58,7 @@ async function enrollingCoursePrompt () {
     let Student_Name  = new Student(stdName,stdFatherName,stdProgramme,stdCourse,stdSession,stdfee,stdduration,stdcreditHours)
     allStudentsList.push(Student_Name)
 
-    // console.log(allStudentsList);
+    console.log(allStudentsList);
 }
 
 class Course {
