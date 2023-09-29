@@ -1,7 +1,7 @@
 {
   "name": "project11_oop_mybank_rizi",
   "type": "module",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "In this project you are going to follow this video which explains object oriented programming using C# and write the same code in TypeScript.",
   "main": "index.js",
   "bin": {
