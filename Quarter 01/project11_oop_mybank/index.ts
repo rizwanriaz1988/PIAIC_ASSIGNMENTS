@@ -143,8 +143,10 @@ async function custTransaction() {
             message:"Enter Customer AC/No"
         }
     ]).then(async(ac)=>{
-        const accountNum = customerList.find((x:any)=>x.custAccountNum === parseInt(ac.custAccNum))
-        if(accountNum){
+        if(customerList.length>0){
+            const accountNum = customerList.find((x:any)=>x.custAccountNum === parseInt(ac.custAccNum))
+            const balance = accountNum.custBalance
+        if(balance){
             await inquirer.prompt([
                 {
                     type: "list",
@@ -160,14 +162,27 @@ async function custTransaction() {
                 }
             ]).then((mode)=>{
                 if(mode.selectMode === "Debit"){
-                    accountNum.custBalance = accountNum.custBalance - parseInt(mode.transactionAmount)
+                    const remaining = accountNum.custBalance - parseInt(mode.transactionAmount)
+                    if(remaining>=0){
+                        accountNum.custBalance = remaining
+                    }else{
+                        console.log("Transaction Unsuccessful\nNot Enough Balance");
+                    }
                 }else if(mode.selectMode === "Credit"){
-                    accountNum.custBalance = accountNum.custBalance + parseInt(mode.transactionAmount)
+                    if(parseInt(mode.transactionAmount)>100){
+                        accountNum.custBalance = accountNum.custBalance + parseInt(mode.transactionAmount) - 1
+                    }else{
+                        accountNum.custBalance = accountNum.custBalance + parseInt(mode.transactionAmount)
+                    }
                 }
             })
         }else{
-            return "Enter Correct Account Number"
+            console.log("Enter Correct Account Number"); 
         }
+        }else{
+            console.log("Enter Customer First!!!"); 
+        }
+        
     })
 }
 
@@ -179,10 +194,18 @@ async function customerBalance() {
             message:"Enter Customer AC/No"
         }
     ]).then(async(ac)=>{
-        const accountNum = customerList.find((x:any)=>x.custAccountNum === parseInt(ac.custAccNum))
-        if(accountNum){
-            console.log(accountNum.custBalance);
+        if(customerList.length>0){
+            const accountNum = customerList.find((x:any)=>x.custAccountNum === parseInt(ac.custAccNum))
+            const balance = accountNum.custBalance
+            if(balance){
+                console.log(balance);
+            }else{
+                console.log("Enter Correct Account Number");
+            }
+        }else{
+                console.log("Enter Customer First!!!");
         }
+        
     })
 }
 
