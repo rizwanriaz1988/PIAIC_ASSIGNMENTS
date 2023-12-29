@@ -1,14 +1,14 @@
 {
-  "name": "project00_calculator_rizi",
+  "name": "project0_calculator_rizi",
   "type": "module",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "project00_calculator_rizi": "dist/index.js"
+    "project0_calculator_rizi": "dist/index.js"
   },
   "author": "",
   "license": "ISC",
@@ -20,6 +20,7 @@
   "dependencies": {
     "chalk": "^5.3.0",
     "chalk-animation": "^2.0.3",
-    "inquirer": "^9.2.10"
+    "inquirer": "^9.2.10",
+    "project0_calculator_rizi": "^1.1.2"
   }
 }
