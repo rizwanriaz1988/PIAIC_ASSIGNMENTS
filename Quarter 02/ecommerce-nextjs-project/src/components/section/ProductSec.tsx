@@ -214,9 +214,9 @@ function ProductSec() {
 
             {/* ============================================================================================= */}
 
-            <div className='flex justify-end mt-24'>
+            <div className='flex justify-end mt-24 pb-8'>
 
-                <h1 className=" basis-1/2 font-bold text-[2.75rem] leading-[55px] tracking-[0.03em] text-[#212121] w-[45%];
+                <h1 className=" basis-1/2 font-bold text-[2.75rem] leading-[55px] tracking-[0.03em] text-[#212121] w-[45%] ;
 ">
                     Unique and Authentic Vintage Designer Jewellery
                 </h1>
