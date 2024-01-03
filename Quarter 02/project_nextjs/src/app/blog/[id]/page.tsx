@@ -48,7 +48,7 @@ async function Blog({ params }: { params: { id: string } }) {
 
 
                 {/* <div className='text-white my-6 w-1/6 bg-slate-950 rounded-md p-6 '> */}
-                <div className='text-white border border-slate-800 my-6 rounded-md pt-6 flex flex-col h-1/4'>
+                <div className='text-white border border-slate-800 bg-slate-950 my-6 rounded-md pt-6 flex flex-col h-1/4'>
                     <div className='flex justify-center'>
                         <img src={authed.user.profile_picture} alt={authed.user.title} className=' size-24 rounded-full bg-slate-900' />
                     </div>
@@ -59,17 +59,17 @@ async function Blog({ params }: { params: { id: string } }) {
                         <h1 className='text-yellow-500 text-xs'>{authed.user.job}</h1>
                         </div >
 
-                        <div className='py-2'>
+                        <div className='py-2 text-xs'>
                         <h1>{authed.user.gender.toUpperCase()}</h1>
                         <h1>DOB: {authed.user.date_of_birth}</h1>
                         </div>
 
-                        <div className='border-t-2 border-slate-800 py-2 my-2 flex flex-col justify-center'>
+                        <div className='border-t-2 border-slate-800 py-2 my-2 flex flex-col justify-center text-xs'>
                         <h1>Address<br/>{authed.user.street},{authed.user.city}</h1>
                         <h1>{authed.user.zipcode},{authed.user.state},{authed.user.country}</h1>
                         </div>
 
-                        <div className='border-t-2 border-slate-800 my-2 py-2'>
+                        <div className='border-t-2 border-slate-800 my-2 py-2 text-xs'>
                             
                         <h1>{authed.user.phone}</h1>
                         <h1>{authed.user.email}</h1>
