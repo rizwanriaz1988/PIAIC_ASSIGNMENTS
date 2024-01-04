@@ -16,10 +16,9 @@ import {
     CarouselPrevious,
 } from "@/components/ui/carousel"
 
+
+
 function ProductSec() {
-
-    // const picArray = ["\product1.png", "\product2.png", "\product3.png", "\product4.png", "\product5.png", "\product6.png", "\product7.png", "\product8.png", "\product9.png", "\product10.png", "\product11.png"]
-
 
     const products_db = [
         {
@@ -160,11 +159,6 @@ function ProductSec() {
 
     ]
 
-
-
-
-
-
     return (
         <div className=' mx-32 my-16 '>
 
@@ -188,7 +182,7 @@ function ProductSec() {
                     className="w-full "
                 >
                     <CarouselContent>
-                        {products_db.map((product, index) => (
+                        {products_db.map((product: any, index: any) => (
                             <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 basis-full px-0 hover:scale-110 transition duration-500  ">
                                 <div className="py-4 ">
                                     {/* <Card> */}
@@ -222,27 +216,6 @@ function ProductSec() {
                 </h1>
 
             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         </div>
     )
 }
