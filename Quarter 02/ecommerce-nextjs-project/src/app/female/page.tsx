@@ -7,7 +7,7 @@ function Female() {
     return (
         <div className='flex-1 mx-32 my-16 flex flex-wrap gap-5 justify-start'>
             {products_db.map((product) => (product.family === "Female" &&
-                <Link href={`/${product.id}`}>
+                <Link href={`/${product.id}`} key={product.id}>
                 <div className='hover:scale-105 transition duration-300' key={product.id} >
                     <div>
                         <img src={product.image} width={250} height={266} alt="" />
