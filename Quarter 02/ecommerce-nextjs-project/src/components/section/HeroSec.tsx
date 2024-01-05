@@ -16,7 +16,7 @@ function HeroSec() {
                     Anyone can beat you but no one can beat your outfit as long as you wear Dine outfits.
                 </p>
                 <Button className='rounded-none bg-[#212121] px-5 py-8 text-lg leading-5 items-center w-fit'>
-                    <IoCartOutline className="mr-3 h-5 w-5" /> Start Shopping
+                    <IoCartOutline className="mr-3 h-5 w-5 hover:bg-none" /> Start Shopping
                 </Button>
 
 

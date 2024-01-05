@@ -15,149 +15,149 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from "@/components/ui/carousel"
-
+import products_db from '@/app/productsDB.json'
 
 
 function ProductSec() {
 
-    const products_db = [
-        {
-            name: "Brushed Raglan Sweatshirt",
-            price: "$195.00",
-            image: "\product1.png",
-            sub_images: ["\product1.png"],
-            product_detail: ` 
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
-            product_care: ["Hand wash using cold water.", "Do not using bleach.", "Hang it to dry.", "Iron on low temperature."],
-            quantity: 10,
-            sizes: ["XS", "S", "M", "L", "XL"],
-            category: "Sweater",
-            family: "Female"
-        },
-        {
-            name: "Cameryn Sash Tie Dress",
-            price: "$545.00",
-            image: "\product2.png",
-            sub_images: ["\product2-1.png", "\product2-2.png", "\product2-3.png", "\product2-4.png"],
-            product_detail: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
-            product_care: ["Lorem ipsum dolor sit amet", "consectetur adipiscing elit"],
-            category: "Dress",
-            family: "Female",
-            quantity: 10,
-            sizes: ["XS", "S", "M", "L", "XL"],
-        },
-        {
-            name: "Flex Sweatshirt",
-            price: "$175.00",
-            image: "\product3.png",
-            sub_images: ["\product3.png"],
-            product_detail: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
-            product_care: ["Hand wash using cold water.", "Do not using bleach.", "Hang it to dry."],
-            quantity: 10,
-            sizes: ["XS", "S", "M", "L", "XL"],
-            category: "Sweater",
-            family: "Female"
-        },
-        {
-            name: "Flex Sweatpants",
-            price: "$175.00",
-            image: "\product4.png",
-            sub_images: ["\product4.png"],
-            product_detail: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
-            product_care: ["Hand wash using cold water.", "Do not using bleach.", "Hang it to dry.", "Iron on low temperature."],
-            quantity: 10,
-            sizes: ["XS", "S", "M", "L", "XL"],
-            category: "Pants",
-            family: "Female"
-        },
-        {
-            name: "Pink Fleece Sweatpants",
-            price: "$195.00",
-            image: "\product5.png",
-            sub_images: ["\product5.png"],
-            product_detail: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
-            product_care: ["Hand wash using cold water.", "Do not using bleach.", "Hang it to dry.", "Iron on low temperature."],
-            quantity: 10,
-            sizes: ["XS", "S", "M", "L", "XL"],
-            category: "Pants",
-            family: "Female"
-        },
-        {
-            name: "Lite Sweatpants",
-            price: "$150.00",
-            image: "\product6.png",
-            sub_images: ["\product6.png"],
-            product_detail: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
-            product_care: ["Hand wash using cold water.", "Do not using bleach.", "Hang it to dry.", "Iron on low temperature."],
-            quantity: 10,
-            sizes: ["XS", "S", "M", "L", "XL"],
-            category: "Kids",
-            family: "Female"
-        },
-        {
-            name: "Imperial Alpaca Hoodie",
-            price: "$525.00",
-            image: "\product7.png",
-            sub_images: ["\product7.png"],
-            product_detail: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
-            product_care: ["Hand wash using cold water.", "Do not using bleach.", "Hang it to dry.", "Iron on low temperature."],
-            quantity: 10,
-            sizes: ["XS", "S", "M", "L", "XL"],
-            category: "Jackets",
-            family: "Female"
-        },
-        {
-            name: "Flex Push Button Bomber",
-            price: "$225.00",
-            image: "\product8.png",
-            sub_images: ["\product8.png"],
-            product_detail: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
-            product_care: ["Hand wash using cold water.", "Do not using bleach.", "Hang it to dry.", "Iron on low temperature."],
-            quantity: 10,
-            sizes: ["XS", "S", "M", "L", "XL"],
-            category: "Jackets",
-            family: "Male"
-        },
-        {
-            name: "Muscle Tank",
-            price: "$75.00",
-            image: "\product9.png",
-            sub_images: ["\product9.png"],
-            product_detail: `
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
-            product_care: ["Hand wash using cold water.", "Do not using bleach.", "Hang it to dry.", "Iron on low temperature."],
-            quantity: 10,
-            sizes: ["XS", "S", "M", "L", "XL"],
-            category: "T Shirts",
-            family: "Female"
-        },
-        {
-            name: "Brushed Bomber",
-            price: "$225.00",
-            image: "\product10.png",
-            sub_images: ["\product10.png"],
-            product_detail: `
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
-            product_care: ["", "", "", ""],
-            quantity: 10,
-            sizes: ["XS", "S", "M", "L", "XL"],
-            category: "Jackets",
-            family: "Female"
-        },
-        {
-            name: "Raglan Sweatshirt",
-            price: "Sweater",
-            image: "\product11.png",
-            sub_images: ["\product11.png"],
-            product_detail: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
-            product_care: ["Hand wash using cold water.", "Do not using bleach.", "Hang it to dry.", "Iron on low temperature."],
-            quantity: 10,
-            sizes: ["XS", "S", "M", "L", "XL"],
-            category: "Jackets",
-            family: "Male"
-        },
+    // const products_db = [
+    //     {
+    //         name: "Brushed Raglan Sweatshirt",
+    //         price: "$195.00",
+    //         image: "\product1.png",
+    //         sub_images: ["\product1.png"],
+    //         product_detail: ` 
+    //             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+    //         product_care: ["Hand wash using cold water.", "Do not using bleach.", "Hang it to dry.", "Iron on low temperature."],
+    //         quantity: 10,
+    //         sizes: ["XS", "S", "M", "L", "XL"],
+    //         category: "Sweater",
+    //         family: "Female"
+    //     },
+    //     {
+    //         name: "Cameryn Sash Tie Dress",
+    //         price: "$545.00",
+    //         image: "\product2.png",
+    //         sub_images: ["\product2-1.png", "\product2-2.png", "\product2-3.png", "\product2-4.png"],
+    //         product_detail: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+    //         product_care: ["Lorem ipsum dolor sit amet", "consectetur adipiscing elit"],
+    //         category: "Dress",
+    //         family: "Female",
+    //         quantity: 10,
+    //         sizes: ["XS", "S", "M", "L", "XL"],
+    //     },
+    //     {
+    //         name: "Flex Sweatshirt",
+    //         price: "$175.00",
+    //         image: "\product3.png",
+    //         sub_images: ["\product3.png"],
+    //         product_detail: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+    //         product_care: ["Hand wash using cold water.", "Do not using bleach.", "Hang it to dry."],
+    //         quantity: 10,
+    //         sizes: ["XS", "S", "M", "L", "XL"],
+    //         category: "Sweater",
+    //         family: "Female"
+    //     },
+    //     {
+    //         name: "Flex Sweatpants",
+    //         price: "$175.00",
+    //         image: "\product4.png",
+    //         sub_images: ["\product4.png"],
+    //         product_detail: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+    //         product_care: ["Hand wash using cold water.", "Do not using bleach.", "Hang it to dry.", "Iron on low temperature."],
+    //         quantity: 10,
+    //         sizes: ["XS", "S", "M", "L", "XL"],
+    //         category: "Pants",
+    //         family: "Female"
+    //     },
+    //     {
+    //         name: "Pink Fleece Sweatpants",
+    //         price: "$195.00",
+    //         image: "\product5.png",
+    //         sub_images: ["\product5.png"],
+    //         product_detail: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+    //         product_care: ["Hand wash using cold water.", "Do not using bleach.", "Hang it to dry.", "Iron on low temperature."],
+    //         quantity: 10,
+    //         sizes: ["XS", "S", "M", "L", "XL"],
+    //         category: "Pants",
+    //         family: "Female"
+    //     },
+    //     {
+    //         name: "Lite Sweatpants",
+    //         price: "$150.00",
+    //         image: "\product6.png",
+    //         sub_images: ["\product6.png"],
+    //         product_detail: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+    //         product_care: ["Hand wash using cold water.", "Do not using bleach.", "Hang it to dry.", "Iron on low temperature."],
+    //         quantity: 10,
+    //         sizes: ["XS", "S", "M", "L", "XL"],
+    //         category: "Kids",
+    //         family: "Female"
+    //     },
+    //     {
+    //         name: "Imperial Alpaca Hoodie",
+    //         price: "$525.00",
+    //         image: "\product7.png",
+    //         sub_images: ["\product7.png"],
+    //         product_detail: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+    //         product_care: ["Hand wash using cold water.", "Do not using bleach.", "Hang it to dry.", "Iron on low temperature."],
+    //         quantity: 10,
+    //         sizes: ["XS", "S", "M", "L", "XL"],
+    //         category: "Jackets",
+    //         family: "Female"
+    //     },
+    //     {
+    //         name: "Flex Push Button Bomber",
+    //         price: "$225.00",
+    //         image: "\product8.png",
+    //         sub_images: ["\product8.png"],
+    //         product_detail: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+    //         product_care: ["Hand wash using cold water.", "Do not using bleach.", "Hang it to dry.", "Iron on low temperature."],
+    //         quantity: 10,
+    //         sizes: ["XS", "S", "M", "L", "XL"],
+    //         category: "Jackets",
+    //         family: "Male"
+    //     },
+    //     {
+    //         name: "Muscle Tank",
+    //         price: "$75.00",
+    //         image: "\product9.png",
+    //         sub_images: ["\product9.png"],
+    //         product_detail: `
+    //             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+    //         product_care: ["Hand wash using cold water.", "Do not using bleach.", "Hang it to dry.", "Iron on low temperature."],
+    //         quantity: 10,
+    //         sizes: ["XS", "S", "M", "L", "XL"],
+    //         category: "T Shirts",
+    //         family: "Female"
+    //     },
+    //     {
+    //         name: "Brushed Bomber",
+    //         price: "$225.00",
+    //         image: "\product10.png",
+    //         sub_images: ["\product10.png"],
+    //         product_detail: `
+    //             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+    //         product_care: ["", "", "", ""],
+    //         quantity: 10,
+    //         sizes: ["XS", "S", "M", "L", "XL"],
+    //         category: "Jackets",
+    //         family: "Female"
+    //     },
+    //     {
+    //         name: "Raglan Sweatshirt",
+    //         price: "Sweater",
+    //         image: "\product11.png",
+    //         sub_images: ["\product11.png"],
+    //         product_detail: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+    //         product_care: ["Hand wash using cold water.", "Do not using bleach.", "Hang it to dry.", "Iron on low temperature."],
+    //         quantity: 10,
+    //         sizes: ["XS", "S", "M", "L", "XL"],
+    //         category: "Jackets",
+    //         family: "Male"
+    //     },
 
-    ]
+    // ]
 
     return (
         <div className=' mx-32 my-16 '>
