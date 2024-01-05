@@ -11,7 +11,7 @@ function Counter() {
         <div className='flex items-center justify-center gap-4 '>
 
             <div className='flex justify-center items-center size-8 bg-slate-100 hover:bg-slate-500 shadow-lg rounded-full'>
-            <button className=' text-3xl' onClick={() =>  quantity>0 ? setQuantity(quantity - 1) : setQuantity(0)}>-</button>
+            <button className=' text-3xl' onClick={() =>  quantity>1 ? setQuantity(quantity - 1) : setQuantity(0)}>-</button>
             </div>
             <div className='text-xl'>{quantity}</div>
             <div className='flex justify-center items-center size-8 bg-slate-100 hover:bg-slate-500 shadow-lg rounded-full'>
