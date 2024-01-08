@@ -7,10 +7,21 @@ import { IoCartOutline } from 'react-icons/io5'
 import Counter from '@/components/section/Counter'
 import Link from 'next/link'
 import SizeSelect from '@/components/section/SizeSelect'
+import Navbar from '@/components/section/Navbar'
+import Cart from '../cart/page'
+import { createContext, useContext } from 'react'
+import { UserContext } from '../layout'
+
+
+
 
 
 function ProductID({ params }: { params: { id: string } }) {
+    const cmingdata = useContext(UserContext)
+
     const [hoverImage, setHoverImage] = useState('')
+
+   
 
     return (
         <div className='flex-1 px-32 py-16 bg-[#fcfcfc]'>
@@ -49,13 +60,13 @@ function ProductID({ params }: { params: { id: string } }) {
 
                                 <div>
                                     {/* order quantity */}
-                                    <Counter />
+                                    
 
                                 </div>
 
                                 <div className='flex items-center gap-5'>
                                     {/* for button and price */}
-                                    <Button className='rounded-none bg-[#212121] px-5 py-5 text-sm font-bold leading-5 items-center w-fit shadow-lg'>
+                                    <Button onClick={() => cmingdata.cartFunction(product.name)} className='rounded-none bg-[#212121] px-5 py-5 text-sm font-bold leading-5 items-center w-fit shadow-lg'>
                                         <IoCartOutline className="mr-3 h-5 w-5" /> Add to Cart
                                     </Button>
                                     <h1 className='text-2xl font-bold text-slate-800'>{product.price}</h1>
@@ -63,7 +74,7 @@ function ProductID({ params }: { params: { id: string } }) {
                             </div>
                         </div>
 
-                        {/* =============================================== */}
+                        {/* ====================product detail text=========================== */}
 
                         <div className='relative mt-16 pt-8 px-16 pb-24 bg-slate-50 shadow-lg flex flex-col justify-center items-center'>
                             <div className='absolute border-b-4 top-0 left-0 px-16 flex justify-center pt-8  w-full  z-[1] text-9xl text-[#2121218f] font-extrabold border-slate-600   leading-[110px]  opacity-[0.07] '>Overview</div>
@@ -87,6 +98,14 @@ function ProductID({ params }: { params: { id: string } }) {
 
                             </div>
                         </div>
+
+                        {/* =========================use context usage============================== */}
+
+
+                                        <Cart params = {{name:product.name}}/>
+
+                        
+
                     </>
                 )
             ))}
@@ -94,7 +113,7 @@ function ProductID({ params }: { params: { id: string } }) {
 
 
 
-
+                                            
 
 
 
