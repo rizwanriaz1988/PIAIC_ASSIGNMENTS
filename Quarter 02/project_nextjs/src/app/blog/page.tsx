@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import React from 'react'
-
+import dayjs from 'dayjs'
+import Image from 'next/image'
 
 async function data() {
     const blogs_api = await fetch("https://api.slingacademy.com/v1/sample-data/blog-posts?offset=0&limit=30")
@@ -31,11 +32,11 @@ async function Blogs() {
 
                         <Link href={`/blog/${blog.id}`} key={blog.id} >
                             <div className='bg-slate-800 rounded-sm hover:scale-105 hover:bg-slate-900 transition duration-150  text-white mb-5 flex items-center flex-col md:flex-row p-5 gap-5'>
-                                <img src={blog.photo_url} alt="" className=' md:size-32 rounded-sm ' />
+                                <Image src={blog.photo_url} alt="" width={200} height={200} className=' md:size-32 rounded-sm ' />
 
                                 <div className=''>
                                     <h1 className="text-2xl font-bold text-yellow-600">{blog.title}</h1>
-                                    <h3 className='text-xs my-2 text-slate-400'>{blog.created_at} | {blog.category}</h3>
+                                    <h3 className='text-xs my-2 text-slate-400'>{dayjs(blog.created_at).format('DD MMM-YY')} | {blog.category}</h3>
                                     <p className='break-words line-clamp-3'>{blog.content_text}</p>
 
                                 </div>
