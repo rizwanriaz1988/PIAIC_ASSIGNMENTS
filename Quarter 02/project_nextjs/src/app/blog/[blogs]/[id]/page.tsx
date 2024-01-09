@@ -1,5 +1,5 @@
 import React from 'react'
-import { data } from '../page'
+// import { data } from '../../page'
 import dayjs from 'dayjs'
 import Image from 'next/image'
 
@@ -13,11 +13,20 @@ async function auth(auth_id: string) {
 }
 
 
+async function data(id:any) {
+    const blogs_api = await fetch(`https://api.slingacademy.com/v1/sample-data/blog-posts/${id}`)
+    if (!blogs_api.ok) {
+        throw new Error("Failed to fetch data")
+    }
+    const blogs_json = blogs_api.json()
+    return blogs_json
+}
+
 async function Blog({ params }: { params: { id: string } }) {
 
-    const bloged = await data()
+    const bloged = await data(params.id)
 
-    const authed = await auth(params.id)
+    const authed = await auth(bloged.blog.user_id)
 
 
     return (
@@ -25,25 +34,25 @@ async function Blog({ params }: { params: { id: string } }) {
             <div className='justify-center flex flex-row-reverse'>
 
                 <div className='text-white my-6 mx-10 w-1/2 bg-slate-950 rounded-md '>
-                    {bloged.blogs.map((blog: any) => (blog.id == params.id &&
-                        <div className='flex flex-col ' key={blog.id}>
+                    {/* {bloged.blogs.map((blog: any) => (blog.id == params.id && */}
+                        <div className='flex flex-col ' key={bloged.blog.id}>
 
                             <div>
-                                <Image src={blog.photo_url} alt={blog.title} width={500} height={500}  className='object-cover h-60 w-full rounded-t-md' />
+                                <Image src={bloged.blog.photo_url} alt={bloged.blog.title} width={500} height={500}  className='object-cover h-60 w-full rounded-t-md' />
                             </div>
 
 
                             <div className='px-5 py-5 border border-t-0 border-slate-800'>
-                                <h1 className="scroll-m-20 text-3xl font-extrabold tracking-tight lg:text-4xl ">{blog.title}</h1>
-                                <p className="leading-7 text-yellow-500">{blog.description}</p>
-                                <p className="scroll-m-20 text-sx font-bold tracking-tight lg:text-sm my-2 text-slate-600">{dayjs(blog.created_at).format('DD MMM-YY')}  |  {blog.category.toUpperCase()}</p>
+                                <h1 className="scroll-m-20 text-3xl font-extrabold tracking-tight lg:text-4xl ">{bloged.blog.title}</h1>
+                                <p className="leading-7 text-yellow-500">{bloged.blog.description}</p>
+                                <p className="scroll-m-20 text-sx font-bold tracking-tight lg:text-sm my-2 text-slate-600">{dayjs(bloged.blog.created_at).format('DD MMM-YY')}  |  {bloged.blog.category.toUpperCase()}</p>
                                 {/* to use the html_content */}
-                                <div dangerouslySetInnerHTML={{ __html: blog.content_html }}></div>
+                                <div dangerouslySetInnerHTML={{ __html: bloged.blog.content_html }}></div>
                             </div>
 
                         </div>
 
-                    ))}
+                    {/* // ))} */}
                 </div>
 
 

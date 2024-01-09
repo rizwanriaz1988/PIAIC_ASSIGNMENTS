@@ -1,10 +1,20 @@
-import Link from 'next/link'
 import React from 'react'
-import dayjs from 'dayjs'
-import Image from 'next/image'
+import Blogs from './[blogs]/page'
+import {
+    Pagination,
+    PaginationContent,
+    PaginationEllipsis,
+    PaginationItem,
+    PaginationLink,
+    PaginationNext,
+    PaginationPrevious,
+} from "@/components/ui/pagination"
 
-async function data() {
-    const blogs_api = await fetch("https://api.slingacademy.com/v1/sample-data/blog-posts?offset=0&limit=30")
+
+
+
+async function completedata() {
+    const blogs_api = await fetch("https://api.slingacademy.com/v1/sample-data/blog-posts")
     if (!blogs_api.ok) {
         throw new Error("Failed to fetch data")
     }
@@ -12,48 +22,65 @@ async function data() {
     return blogs_json
 }
 
-async function Blogs() {
 
+async function Page() {
 
-    const bloges = await data()
+    const completedData = await completedata()
+    const data_total_blogs = completedData.total_blogs
+    const blogs_per_page = 100
+    const no_of_pages = Math.ceil(data_total_blogs / blogs_per_page)
+    const pages_array = Array.from({ length: no_of_pages }, (_, i) => i + 1)
+
 
 
 
     return (
-        <div className="  flex justify-center">
-            <div className="bg-white p-0.5 my-1 md:my-4 rounded-md w-10/12 sm:w-5/12 lg:w-8/12">
-                <div className="flex justify-center bg-slate-900 py-1 rounded-md ">
-                    <h1 className="text-yellow-400 text-4xl">Blog App</h1>
-                </div>
-                <div className=" bg-black my-0.5 rounded-md p-8 ">
-                    {/*====================== Main Div for working ====================*/}
-                    {/*============================= Start ============================*/}
-                    {bloges.blogs.map((blog: any) => (
-
-                        <Link href={`/blog/${blog.id}`} key={blog.id} >
-                            <div className='bg-slate-800 rounded-sm hover:scale-105 hover:bg-slate-900 transition duration-150  text-white mb-5 flex items-center flex-col md:flex-row p-5 gap-5'>
-                                <Image src={blog.photo_url} alt="" width={200} height={200} className=' md:size-32 rounded-sm ' />
-
-                                <div className=''>
-                                    <h1 className="text-2xl font-bold text-yellow-600">{blog.title}</h1>
-                                    <h3 className='text-xs my-2 text-slate-400'>{dayjs(blog.created_at).format('DD MMM-YY')} | {blog.category}</h3>
-                                    <p className='break-words line-clamp-3'>{blog.content_text}</p>
-
-                                </div>
-                            </div>
-                        </Link>
+        <div className='text-white'>
+            <h1 >{data_total_blogs}</h1>
 
 
+            <Pagination>
+                <PaginationContent>
 
-
+                    <PaginationItem>
+                        <PaginationPrevious href="#" />
+                    </PaginationItem>
+                    {pages_array.map((page) => (
+                        <PaginationItem key={page} >
+                            <PaginationLink href={`/blog/${page}`} >{page}</PaginationLink>
+                        </PaginationItem>
                     ))}
-                    {/*============================== End =============================*/}
-                    {/*====================== Main Div for working ====================*/}
-                </div>
-            </div>
+
+
+                    <PaginationItem>
+                        <PaginationEllipsis />
+                    </PaginationItem>
+
+                    <PaginationItem>
+                        <PaginationNext href="#" />
+                    </PaginationItem>
+
+                </PaginationContent>
+            </Pagination>
+
+            <Blogs params={{ blogs: 1 }} />
+
         </div>
     )
 }
 
-export default Blogs
-export { data }
+
+
+
+
+
+
+
+
+
+
+
+
+
+export default Page
+// export { data }
