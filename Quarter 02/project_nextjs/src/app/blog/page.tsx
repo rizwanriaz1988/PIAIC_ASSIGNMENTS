@@ -1,5 +1,6 @@
+"use client"
 import React from 'react'
-import Blogs from './[blogs]/page'
+import Blogs from './components/Blogs'
 import {
     Pagination,
     PaginationContent,
@@ -9,23 +10,38 @@ import {
     PaginationNext,
     PaginationPrevious,
 } from "@/components/ui/pagination"
+import { useState, useEffect } from 'react'
 
 
 
 
-async function completedata() {
-    const blogs_api = await fetch("https://api.slingacademy.com/v1/sample-data/blog-posts")
-    if (!blogs_api.ok) {
-        throw new Error("Failed to fetch data")
-    }
-    const blogs_json = blogs_api.json()
-    return blogs_json
-}
+
+export default function Page() {
+    const [isClient, setIsClient] = useState(false)
+    const [currentPage, setCurrentPage] = useState(1)
+    const [completedData, setCompletedData] = useState<any>({});
+
+    useEffect(() => {
+        setIsClient(true)
+        const fetchData = async () => {
+            try {
+                const response = await fetch("https://api.slingacademy.com/v1/sample-data/blog-posts/");
+                if (!response.ok) {
+                    throw new Error("Failed to fetch data");
+                }
+                const data = await response.json();
+                setCompletedData(data);
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        };
+
+        fetchData();
+    }, []);
 
 
-async function Page() {
 
-    const completedData = await completedata()
+
     const data_total_blogs = completedData.total_blogs
     const blogs_per_page = 100
     const no_of_pages = Math.ceil(data_total_blogs / blogs_per_page)
@@ -33,39 +49,78 @@ async function Page() {
 
 
 
+    const handleNextPage = () => {
+        if (currentPage < pages_array.length) {
+            setCurrentPage(currentPage + 1);
+        }
+    };
+
+    const handlePrevPage = () => {
+        if (currentPage > 1) {
+            setCurrentPage(currentPage - 1);
+        }
+    };
 
     return (
-        <div className='text-white'>
-            <h1 >{data_total_blogs}</h1>
+        <>
+            <div className="  flex justify-center">
+                <div className="bg-white p-0.5 my-1 md:my-4 rounded-md w-10/12 sm:w-5/12 lg:w-8/12">
+                    <div className="flex justify-center bg-slate-900 py-1 rounded-md ">
+                        <h1 className="text-yellow-400 text-4xl">Blog App</h1>
+                    </div>
+                    <div className=" bg-black my-0.5 rounded-md px-8  flex flex-col">
+                        {/*====================== Main Div for working ====================*/}
+                        {/*============================= Start ============================*/}
+
+                        {isClient ? (
+                            
+                                <div className='text-white '>
+                                    {/* <h1 >{data_total_blogs}</h1> */}
+
+                                    <div className='my-3'>
+                                        <Pagination>
+                                            <PaginationContent>
+
+                                                <PaginationItem>
+                                                    <PaginationPrevious onClick={handlePrevPage} href={''} />
+                                                </PaginationItem>
+
+                                                {pages_array.map((page, index) => (
+                                                    // <PaginationItem key={index} className={(page === currentPage) ? "bg-neutral-600 rounded-md" : ""}>
+                                                    <PaginationItem key={index} className={(page === currentPage) ? "bg-[#f0f0f0] text-black rounded-md" : ""}>
+                                                        <PaginationLink onClick={() => setCurrentPage(page)} href={''}>{page}</PaginationLink>
+                                                    </PaginationItem>
+                                                ))}
+
+                                                <PaginationItem>
+                                                    <PaginationEllipsis />
+                                                </PaginationItem>
+
+                                                <PaginationItem>
+                                                    <PaginationNext onClick={handleNextPage} href={''} />
+                                                </PaginationItem>
+
+                                            </PaginationContent>
+                                        </Pagination>
+                                    </div>
 
 
-            <Pagination>
-                <PaginationContent>
+                                    <Blogs params={{ blogs: currentPage }} />
 
-                    <PaginationItem>
-                        <PaginationPrevious href="#" />
-                    </PaginationItem>
-                    {pages_array.map((page) => (
-                        <PaginationItem key={page} >
-                            <PaginationLink href={`/blog/${page}`} >{page}</PaginationLink>
-                        </PaginationItem>
-                    ))}
+                                </div>
+                            
+                        ) : (
+                            <div>Loading...</div>
+                        )}
 
+                        {/*============================== End =============================*/}
+                        {/*====================== Main Div for working ====================*/}
+                    </div>
+                </div>
+            </div>
 
-                    <PaginationItem>
-                        <PaginationEllipsis />
-                    </PaginationItem>
+        </>
 
-                    <PaginationItem>
-                        <PaginationNext href="#" />
-                    </PaginationItem>
-
-                </PaginationContent>
-            </Pagination>
-
-            <Blogs params={{ blogs: 1 }} />
-
-        </div>
     )
 }
 
@@ -82,5 +137,5 @@ async function Page() {
 
 
 
-export default Page
+// export default Page
 // export { data }
