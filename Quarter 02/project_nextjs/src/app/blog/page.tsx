@@ -45,12 +45,22 @@ export default function Page() {
     const data_total_blogs = completedData.total_blogs
     const blogs_per_page = 100
     const no_of_pages = Math.ceil(data_total_blogs / blogs_per_page)
-    const pages_array = Array.from({ length: no_of_pages }, (_, i) => i + 1)
+    const pageNumbers = Array.from({ length: no_of_pages }, (_, i) => i + 1)
+
+
+
+    const maxPageNum = 5; // Maximum page numbers to display at once
+    const pageNumLimit = Math.floor(maxPageNum / 2); // Current page should be in the middle if possible
+
+    let activePages = pageNumbers.slice(
+        Math.max(0, currentPage - 1 - pageNumLimit),
+        Math.min(currentPage - 1 + pageNumLimit + 1, pageNumbers.length)
+    );
 
 
 
     const handleNextPage = () => {
-        if (currentPage < pages_array.length) {
+        if (currentPage < pageNumbers.length) {
             setCurrentPage(currentPage + 1);
         }
     };
@@ -61,6 +71,42 @@ export default function Page() {
         }
     };
 
+    const renderPages = () => {
+        const renderedPages = activePages.map((page, idx) => (
+            <PaginationItem
+                key={idx}
+                className={currentPage === page ? "bg-[#f0f0f0] text-black rounded-md" : ""}
+            >
+                <PaginationLink onClick={() => setCurrentPage(page)} href={''}>
+                    {page}
+                </PaginationLink>
+            </PaginationItem>
+        ));
+
+        // Add ellipsis at the start if necessary
+        if (activePages[0] > 1) {
+            renderedPages.unshift(
+                <PaginationEllipsis
+                    key="ellipsis-start"
+                    onClick={() => setCurrentPage(activePages[0] - 1)}
+                />
+            );
+        }
+
+        // Add ellipsis at the end if necessary
+        if (activePages[activePages.length - 1] < pageNumbers.length) {
+            renderedPages.push(
+                <PaginationEllipsis
+                    key="ellipsis-end"
+                    onClick={() =>
+                        setCurrentPage(activePages[activePages.length - 1] + 1)
+                    }
+                />
+            );
+        }
+
+        return renderedPages;
+    };
     return (
         <>
             <div className="  flex justify-center">
@@ -73,42 +119,33 @@ export default function Page() {
                         {/*============================= Start ============================*/}
 
                         {isClient ? (
-                            
-                                <div className='text-white '>
-                                    {/* <h1 >{data_total_blogs}</h1> */}
 
-                                    <div className='my-3'>
-                                        <Pagination>
-                                            <PaginationContent>
+                            <div className='text-white '>
+                                {/* <h1 >{data_total_blogs}</h1> */}
 
-                                                <PaginationItem>
-                                                    <PaginationPrevious onClick={handlePrevPage} href={''} />
-                                                </PaginationItem>
+                                <div className='my-3'>
+                                    <Pagination>
+                                        <PaginationContent>
 
-                                                {pages_array.map((page, index) => (
-                                                    // <PaginationItem key={index} className={(page === currentPage) ? "bg-neutral-600 rounded-md" : ""}>
-                                                    <PaginationItem key={index} className={(page === currentPage) ? "bg-[#f0f0f0] text-black rounded-md" : ""}>
-                                                        <PaginationLink onClick={() => setCurrentPage(page)} href={''}>{page}</PaginationLink>
-                                                    </PaginationItem>
-                                                ))}
+                                            <PaginationItem>
+                                                <PaginationPrevious onClick={handlePrevPage} href={''} />
+                                            </PaginationItem>
 
-                                                <PaginationItem>
-                                                    <PaginationEllipsis />
-                                                </PaginationItem>
+                                            {renderPages()}
 
-                                                <PaginationItem>
-                                                    <PaginationNext onClick={handleNextPage} href={''} />
-                                                </PaginationItem>
+                                            <PaginationItem>
+                                                <PaginationNext onClick={handleNextPage} href={''} />
+                                            </PaginationItem>
 
-                                            </PaginationContent>
-                                        </Pagination>
-                                    </div>
-
-
-                                    <Blogs params={{ blogs: currentPage }} />
-
+                                        </PaginationContent>
+                                    </Pagination>
                                 </div>
-                            
+
+                                {/* ========================================= */}
+                                <Blogs params={{ blogs: currentPage }} />
+
+                            </div>
+
                         ) : (
                             <div>Loading...</div>
                         )}
@@ -124,18 +161,3 @@ export default function Page() {
     )
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-// export default Page
-// export { data }
