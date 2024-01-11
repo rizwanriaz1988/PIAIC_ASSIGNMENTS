@@ -114,7 +114,7 @@ export default function Page() {
                     <div className="flex justify-center bg-slate-900 py-1 rounded-md ">
                         <h1 className="text-yellow-400 text-4xl">Blog App</h1>
                     </div>
-                    <div className=" bg-black my-0.5 rounded-md px-8  flex flex-col">
+                    <div className=" bg-black my-0.5 rounded-md px-2  flex flex-col">
                         {/*====================== Main Div for working ====================*/}
                         {/*============================= Start ============================*/}
 

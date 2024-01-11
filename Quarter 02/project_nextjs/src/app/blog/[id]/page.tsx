@@ -2,7 +2,7 @@ import React from 'react'
 // import { data } from '../../page'
 import dayjs from 'dayjs'
 import Image from 'next/image'
-
+import { ScrollArea } from "@/components/ui/scroll-area"
 async function auth(auth_id: string) {
     const auth_api = await fetch(`https://api.slingacademy.com/v1/sample-data/users/${auth_id}`)
     if (!auth_api.ok) {
@@ -47,7 +47,9 @@ async function Blog({ params }: { params: { id: string } }) {
                                 <p className="leading-7 text-yellow-500">{bloged.blog.description}</p>
                                 <p className="scroll-m-20 text-sx font-bold tracking-tight lg:text-sm my-2 text-slate-600">{dayjs(bloged.blog.created_at).format('DD MMM-YY')}  |  {bloged.blog.category.toUpperCase()}</p>
                                 {/* to use the html_content */}
+                                < ScrollArea className='h-screen p-2'>
                                 <div dangerouslySetInnerHTML={{ __html: bloged.blog.content_html }}></div>
+                                </ScrollArea>
                             </div>
 
                         </div>

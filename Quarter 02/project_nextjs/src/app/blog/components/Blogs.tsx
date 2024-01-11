@@ -2,6 +2,8 @@ import Link from 'next/link'
 import React from 'react'
 import dayjs from 'dayjs'
 import Image from 'next/image'
+import { ScrollArea } from "@/components/ui/scroll-area"
+
 // import { data } from '../page'
 
 async function data(pagination: any) {
@@ -23,9 +25,10 @@ async function Blogs({ params }: { params: { blogs: number } }) {
     return (
        
                     <>
+                    <ScrollArea className="h-screen p-2">
                         {bloges.blogs.map((blog: any) => (
                             <Link href={`/blog/${blog.id}`} key={`${params.blogs}/${blog.id}`} >
-                                <div className='bg-slate-800 rounded-sm hover:scale-105 hover:bg-slate-900 transition duration-150  text-white mb-5 flex items-center flex-col md:flex-row p-5 gap-5'>
+                                <div className='bg-slate-800 rounded-sm  hover:bg-slate-900   text-white mb-5 mx-4 flex items-center flex-col md:flex-row p-2 gap-5'>
                                     <Image src={blog.photo_url} alt="" width={200} height={200} className=' md:size-32 rounded-sm ' />
                                     <div className=''>
                                         <h1 className="text-2xl font-bold text-yellow-600">{blog.title}</h1>
@@ -35,6 +38,7 @@ async function Blogs({ params }: { params: { blogs: number } }) {
                                 </div>
                             </Link>
                         ))}
+                        </ScrollArea>
                     </>
                     
     )
