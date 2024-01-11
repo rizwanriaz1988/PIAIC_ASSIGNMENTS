@@ -47,7 +47,7 @@ async function Blog({ params }: { params: { id: string } }) {
                                 <p className="leading-7 text-yellow-500">{bloged.blog.description}</p>
                                 <p className="scroll-m-20 text-sx font-bold tracking-tight lg:text-sm my-2 text-slate-600">{dayjs(bloged.blog.created_at).format('DD MMM-YY')}  |  {bloged.blog.category.toUpperCase()}</p>
                                 {/* to use the html_content */}
-                                < ScrollArea className='h-screen p-2'>
+                                < ScrollArea className='h-screen pr-2'>
                                 <div dangerouslySetInnerHTML={{ __html: bloged.blog.content_html }}></div>
                                 </ScrollArea>
                             </div>
