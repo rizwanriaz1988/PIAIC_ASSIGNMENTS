@@ -42,19 +42,19 @@ export default function Page() {
 
 
 
-    const data_total_blogs = completedData.total_blogs
+    const data_total_blogs = completedData.total_blogs              //1000
     const blogs_per_page = 100
-    const no_of_pages = Math.ceil(data_total_blogs / blogs_per_page)
-    const pageNumbers = Array.from({ length: no_of_pages }, (_, i) => i + 1)
+    const no_of_pages = Math.ceil(data_total_blogs / blogs_per_page)    //10
+    const pageNumbers = Array.from({ length: no_of_pages }, (_, i) => i + 1)    // 1,2,3,4,5,6,7,8,9,10
 
 
 
     const maxPageNum = 5; // Maximum page numbers to display at once
-    const pageNumLimit = Math.floor(maxPageNum / 2); // Current page should be in the middle if possible
+    const pageNumLimit = Math.floor(maxPageNum / 2); // Current page should be in the middle if possible    //2
 
     let activePages = pageNumbers.slice(
-        Math.max(0, currentPage - 1 - pageNumLimit),
-        Math.min(currentPage - 1 + pageNumLimit + 1, pageNumbers.length)
+        Math.max(0, currentPage - 1 - pageNumLimit),    //0,-2
+        Math.min(currentPage - 1 + pageNumLimit + 1, pageNumbers.length)    //3,10
     );
 
 
