@@ -34,6 +34,11 @@ function TopNavigation() {
             <NavigationMenuTrigger >My Projects</NavigationMenuTrigger>
             <NavigationMenuContent className="bg-slate-950">
               <div className="">
+                <Link href="/contact-us"  legacyBehavior passHref>
+              <NavigationMenuLink className={` text-white bg-slate-950 hover:bg-slate-900 hover:text-green-500 ${navigationMenuTriggerStyle()}`}>Contact Us</NavigationMenuLink>
+              </Link>
+              </div>
+              <div className="">
                 <Link href="/blog"  legacyBehavior passHref>
               <NavigationMenuLink className={` text-white bg-slate-950 hover:bg-slate-900 hover:text-green-500 ${navigationMenuTriggerStyle()}`}>Blog App</NavigationMenuLink>
               </Link>
