@@ -102,7 +102,7 @@ function Login() {
           </Form>
           <div className=" mt-8 flex items-center gap-3 flex-col">
             <div>
-              <h6 className="text-white text-xs">Don't have an account? &nbsp;<Link href="/contact-us" className="text-yellow-600 hover:text-yellow-400">Sign Up</Link></h6>
+              <h6 className="text-white text-xs">Do not have an account? &nbsp;<Link href="/contact-us" className="text-yellow-600 hover:text-yellow-400">Sign Up</Link></h6>
             </div>
             <div>
               <h6 className="text-white text-xs">Forgot Password? &nbsp;<Link href="/contact-us/forgot" className="text-yellow-600 hover:text-yellow-400">Click Here</Link></h6>
