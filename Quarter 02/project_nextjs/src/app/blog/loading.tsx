@@ -16,7 +16,7 @@ function LoadingDesign() {
 
       <div className='gap-5 flex md:flex-col mx-6 flex-row my-3 items-center '>
         
-        <div className="w-1/2   bg-slate-800 rounded-md h-8 mt-4 animate-pulse"></div>
+        <div className="w-1/3   bg-slate-800 rounded-md h-10 mt-4 animate-pulse"></div>
         <div className="w-full  bg-slate-800 rounded-md h-32 animate-pulse"></div>
         <div className="w-full  bg-slate-800 rounded-md h-32 animate-pulse"></div>
         <div className="w-full  bg-slate-800 rounded-md h-32 animate-pulse"></div>
