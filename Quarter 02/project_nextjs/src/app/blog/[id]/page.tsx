@@ -113,7 +113,7 @@ async function Blog({ params }: { params: { id: string } }) {
                     <div className=''>
                         {authBlogs.blogs.map((blog: any) => (blog.user_id == bloged.blog.user_id && blog.id != bloged.blog.id &&
 
-                            <div className='text-white border w-60 border-slate-800 bg-slate-950 mb-4 rounded-md flex flex-col '>
+                            <div className='text-white border w-60 border-slate-800 bg-slate-950 mb-4 rounded-md flex flex-col' key={blog.id}>
 
                                 <Link href={`/blog/${blog.id}`}>
                                     <div key={blog.id} className='flex items-center flex-col p-4 gap-2'>
