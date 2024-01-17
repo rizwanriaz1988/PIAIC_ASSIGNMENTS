@@ -58,7 +58,7 @@ function Login() {
   return (
     <div className="  h-full w-screen justify-center flex my-10">
 
-      <div className="items-center flex flex-col  bg-slate-950 rounded-md px-6 gap-4 py-4 border-slate-700 border">
+      <div className="items-center flex flex-col  bg-slate-950 rounded-md px-6 gap-4 py-4 shadow-md shadow-gray-600 ">
         <h1 className="text-yellow-400 text-3xl">Login</h1>
         {/*====================== Main Div for working ====================*/}
         {/*============================= Start ============================*/}
