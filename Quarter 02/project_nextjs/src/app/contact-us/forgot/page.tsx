@@ -66,7 +66,7 @@ function Forgot() {
   return (
     <div className="  h-full w-screen justify-center flex my-10">
 
-      <div className="items-center flex flex-col  bg-black rounded-md px-6 gap-4 py-4 border-white border">
+      <div className="items-center flex flex-col  bg-slate-950 rounded-md px-6 gap-4 py-4 border-slate-700 border">
         <h1 className="text-yellow-400 text-2xl">Recover Password</h1>
         {/*====================== Main Div for working ====================*/}
         {/*============================= Start ============================*/}
