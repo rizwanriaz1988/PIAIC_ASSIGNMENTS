@@ -11,7 +11,7 @@ import { useState } from 'react'
 
 export default function Home() {
   return (
-    <div >
+    <div className='mx-12 lg:mx-32'>
       
       <HeroSec />
       <EventSec />

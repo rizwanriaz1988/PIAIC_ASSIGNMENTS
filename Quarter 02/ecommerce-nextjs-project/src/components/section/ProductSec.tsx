@@ -160,7 +160,7 @@ function ProductSec() {
     // ]
 
     return (
-        <div className=' mx-32 my-16 '>
+        <div className='  my-16 '>
 
             {/* ========================================================== */}
             <div className='flex items-center flex-col gap-2 mb-8'>
@@ -184,16 +184,16 @@ function ProductSec() {
                     <CarouselContent>
                         {products_db.map((product: any, index: any) => (
                             <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 basis-full px-0 hover:scale-110 transition duration-500  ">
-                                <div className="py-4 ">
+                                <div className="py-4 flex flex-col items-center">
                                     {/* <Card> */}
                                     {/* <CardContent className="flex aspect-square items-center justify-center p-6" > */}
                                     {/* <span className="text-3xl font-semibold"> */}
-                                    <img src={product.image} alt="hero" width={380} height={400} className="flex flex-shrink-0" />
+                                    <img src={product.image} alt="hero" width={380} height={400} className=" " />
                                     {/* </span> */}
                                     {/* </CardContent> */}
                                     {/* </Card> */}
-                                    <p className="leading-7 mt-2 font-extrabold">{product.name}</p>
-                                    <p className="leading-7 mt-2 font-extrabold">{product.price}</p>
+                                    <p className="lg:self-start leading-7 mt-2 font-extrabold">{product.name}</p>
+                                    <p className="lg:self-start leading-7 mt-2 font-extrabold">{product.price}</p>
                                 </div>
                             </CarouselItem>
                         ))}
@@ -208,9 +208,9 @@ function ProductSec() {
 
             {/* ============================================================================================= */}
 
-            <div className='flex justify-end mt-24 pb-8'>
+            <div className='flex justify-center md:justify-end  mt-24 pb-8 '>
 
-                <h1 className=" basis-1/2 font-bold text-[2.75rem] leading-[55px] tracking-[0.03em] text-[#212121] w-[45%] ;
+                <h1 className="basis-full lg:basis-1/2 text-left font-bold text-[2.75rem] leading-[55px] tracking-[0.03em] text-[#212121]  ;
 ">
                     Unique and Authentic Vintage Designer Jewellery
                 </h1>

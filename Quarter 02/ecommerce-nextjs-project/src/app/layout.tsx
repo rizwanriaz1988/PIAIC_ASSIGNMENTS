@@ -1,4 +1,3 @@
-"use client";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -11,15 +10,8 @@ import { createContext } from "react";
 import ProductID from "./[id]/page";
 
 const inter = Inter({ subsets: ["latin"] });
-interface UserContextType {
-  rizi: string;
-  cartFunction: (a: string) => void;
-  cart: string
-}
-export const UserContext = createContext<UserContextType>({ rizi: "", cartFunction: () => {} ,cart:"" });
 
 
-const rizi ="rizwambkbn"
 
  const metadata: Metadata = {
   title: "Create Next App",
@@ -34,21 +26,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
 
-  const [cart, setCart] = useState<any>(0);
-  const cartFunction=(a:any)=>{
-    setCart(a)
-  }
+  
 
 
   return (
     <html lang="en">
-      <body className={inter.className}>
-
-        <UserContext.Provider value={{rizi:rizi,cartFunction:cartFunction,cart:cart}}>
+      <body className={inter.className} >
+        
         <Navbar />
         {children}
         <Footbar />
-        </UserContext.Provider> 
 
       </body>
     </html>

@@ -3,18 +3,18 @@ import { Button } from '../ui/button'
 import { Input } from "@/components/ui/input"
 function NewsSec() {
     return (
-        <div className=' mx-32 pb-16 flex flex-col'>
-            <div className='  flex items-center bg-[#fbfcff] p-16'>
+        <div className=' pb-16 flex flex-col'>
+            <div className='  flex flex-col lg:flex-row items-center '>
 
 
-
+                {/* lefts side*/}
                 <div className='basis-1/2 relative flex flex-col justify-center '>
 
+                    {/* background text */}
+                    <div className='font-extrabold text-[60px] md:text-[110px] leading-[110px] absolute text-[#212121] opacity-[0.07] z-[1]'>Different from others</div>
 
-                    <div className='font-extrabold text-[6.875rem] leading-[110px] absolute text-[#212121] opacity-[0.07] z-[1]'>Different from others</div>
-
-
-                    <div className=' grid grid-cols-2 grid-rows-2 gap-y-16 gap-x-14 pr-18'>
+                    {/*  4 sections  */}
+                    <div className=' grid grid-cols-2 grid-rows-2 gap-y-16 gap-x-14 pr-18 '>
 
                         <div className=''>
                             <h3 className="scroll-m-20 text-xl leading-none font-semibold tracking-tight">Using Good Quality Materials</h3>
@@ -43,10 +43,10 @@ function NewsSec() {
 
 
 
-
+                {/* right side "picture" and "text" */}
                 {/* ========================================================================================== */}
 
-                <div className='basis-1/2 flex gap-10 '>
+                <div className='basis-1/2 flex gap-10 my-8 flex-col md:flex-row items-center'>
                     <img src="\product7.png" alt="hero" width={285} height={350} className="object-fill" />
                     <div className='flex flex-col justify-center gap-8'>
                         <p className="leading-7 [&:not(:first-child)]:mt-6 text-justify">
@@ -58,15 +58,15 @@ function NewsSec() {
                 </div>
             </div>
 
-
+            {/* news letter */}
             {/* ========================================================================================== */}
             <div className='relative py-40 flex flex-col justify-center items-center'>
-                <div className='font-extrabold text-[6.875rem] leading-[110px] absolute text-[#212121] opacity-[0.07] '>Newsletter</div>
+                <div className='font-extrabold text-[80px] md:text-[110px] leading-[110px] absolute text-[#212121] opacity-[0.07] '>Newsletter</div>
                 <div className=' flex flex-col items-center  '>
-                    <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl pb-4">
+                    <h1 className="scroll-m-20 text-4xl text-center font-extrabold tracking-tight lg:text-5xl pb-4">
                         Subscribe Our Newsletter
                     </h1>
-                    <p className="leading-7 [&:not(:first-child)]:mt-6 pb-8">
+                    <p className="leading-7 [&:not(:first-child)]:mt-6 pb-8 text-center">
                         Get the latest information and promo offers directly
                     </p>
                     <div className="flex w-full max-w-sm items-center space-x-2">

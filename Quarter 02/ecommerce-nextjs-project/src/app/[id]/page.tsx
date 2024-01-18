@@ -10,14 +10,13 @@ import SizeSelect from '@/components/section/SizeSelect'
 import Navbar from '@/components/section/Navbar'
 import Cart from '../cart/page'
 import { createContext, useContext } from 'react'
-import { UserContext } from '../layout'
 
 
 
 
 
 function ProductID({ params }: { params: { id: string } }) {
-    const cmingdata = useContext(UserContext)
+    // const cmingdata = useContext(UserContext)
 
     const [hoverImage, setHoverImage] = useState('')
 
@@ -66,7 +65,7 @@ function ProductID({ params }: { params: { id: string } }) {
 
                                 <div className='flex items-center gap-5'>
                                     {/* for button and price */}
-                                    <Button onClick={() => cmingdata.cartFunction(product.name)} className='rounded-none bg-[#212121] px-5 py-5 text-sm font-bold leading-5 items-center w-fit shadow-lg'>
+                                    <Button  className='rounded-none bg-[#212121] px-5 py-5 text-sm font-bold leading-5 items-center w-fit shadow-lg'>
                                         <IoCartOutline className="mr-3 h-5 w-5" /> Add to Cart
                                     </Button>
                                     <h1 className='text-2xl font-bold text-slate-800'>{product.price}</h1>
@@ -102,7 +101,7 @@ function ProductID({ params }: { params: { id: string } }) {
                         {/* =========================use context usage============================== */}
 
 
-                                        <Cart params = {{name:product.name}}/>
+                                        {/* <Cart params = {{name:product.name}}/> */}
 
                         
 

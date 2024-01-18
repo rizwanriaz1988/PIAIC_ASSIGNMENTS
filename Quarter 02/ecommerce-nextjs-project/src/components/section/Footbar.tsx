@@ -61,12 +61,12 @@ const components: { heading: string, content: { subheading: string, href_subhead
 function Footbar() {
     return (
         <>
-            <div className='flex justify-between items-start mx-32 my-9'>
-
-                <div className='w-[30%] flex-col flex'>
+            <div className='flex flex-wrap justify-between items-start mx-12 lg:mx-32 my-9'>
+                {/* left side */}
+                <div className='basis-1/3 flex-col flex flex-shrink-0 my-4'>
                     <div className=''>
                         {/* left side one column */}
-                        <Image src="/Logo.webp" alt="logo" width={180} height={180} className='pb-4 pt-1' />
+                        <Image src="/Logo.webp" alt="logo" width={180} height={180} className='pb-4 pt-1 ' />
 
                         <p className="leading-5 [&:not(:first-child)]:mt-6 pb-8 ">
                             Small, artisan label that offers a thoughtfully curated collection of high quality everyday essentials made.
@@ -86,7 +86,7 @@ function Footbar() {
                 </div>
                 {/* right side */}
                 {components.map((component) => (
-                    <div key={component.heading}>
+                    <div key={component.heading} className='my-4 mx-4'>
                         <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">{component.heading}</h3>
                         {component.content.map((content) => (
                             <div key={content.subheading} className='mt-[15px]'>
@@ -100,7 +100,7 @@ function Footbar() {
             </div>
             {/* ================================================================================= */}
             <div className='mt-24  border-t-2 border-slate-200  py-5  '>
-                <div className='flex justify-between items-center mx-32'>
+                <div className='flex justify-between items-center mx-12 lg:mx-32 flex-wrap'>
                 <div><p className="leading-7 [&:not(:first-child)]:mt-6 text-[#666666]">Copyright © 2022 Dine Market</p></div>
                  <div><p className="leading-7 [&:not(:first-child)]:mt-6 text-[#666666]">Design by.<span className='font-bold text-black'>Rizi Tech Studio</span></p></div>
                 <div><p className="leading-7 [&:not(:first-child)]:mt-6 text-[#666666]">Code by.<span className='font-bold text-black'>rizwanriaz1988 on github</span></p></div>
