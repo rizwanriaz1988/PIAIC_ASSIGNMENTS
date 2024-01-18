@@ -3,32 +3,32 @@ import { Button } from '../ui/button'
 import { Input } from "@/components/ui/input"
 function NewsSec() {
     return (
-        <div className=' mx-32 pb-16 '>
-            <div className='  flex'>
+        <div className=' mx-32 pb-16 flex flex-col'>
+            <div className='  flex items-center bg-[#fbfcff] p-16'>
 
 
 
-                <div className='basis-1/2 relative '>
+                <div className='basis-1/2 relative flex flex-col justify-center '>
 
 
                     <div className='font-extrabold text-[6.875rem] leading-[110px] absolute text-[#212121] opacity-[0.07] z-[1]'>Different from others</div>
 
 
-                    <div className=' grid grid-cols-2 grid-rows-2 gap-20 '>
+                    <div className=' grid grid-cols-2 grid-rows-2 gap-y-16 gap-x-14 pr-18'>
 
-                        <div className='w-1/2'>
+                        <div className=''>
                             <h3 className="scroll-m-20 text-xl leading-none font-semibold tracking-tight">Using Good Quality Materials</h3>
                             <p className="leading-2 [&:not(:first-child)]:mt-6 grow-0">Lorem ipsum dolor sit amt, consectetur adipiscing elit.</p>
                         </div>
-                        <div className='w-1/2'>
+                        <div className=''>
                             <h3 className="scroll-m-20 text-xl leading-none font-semibold tracking-tight">Modern Fashion Design</h3>
                             <p className="leading-2 [&:not(:first-child)]:mt-6">Lorem ipsum dolor sit amt, consectetur adipiscing elit.</p>
                         </div>
-                        <div className='w-1/2'>
+                        <div className=''>
                             <h3 className="scroll-m-20 text-xl leading-none font-semibold tracking-tight">100% Handmade Products</h3>
                             <p className="leading-2 [&:not(:first-child)]:mt-6">Lorem ipsum dolor sit amt, consectetur adipiscing elit.</p>
                         </div>
-                        <div className='w-1/2'>
+                        <div className=''>
                             <h3 className="scroll-m-20 text-xl leading-none font-semibold tracking-tight">Discount for Bulk Orders</h3>
                             <p className="leading-2 [&:not(:first-child)]:mt-6">Lorem ipsum dolor sit amt, consectetur adipiscing elit.</p>
                         </div>
@@ -47,7 +47,7 @@ function NewsSec() {
                 {/* ========================================================================================== */}
 
                 <div className='basis-1/2 flex gap-10 '>
-                    <img src="\product7.png" alt="hero" width={380} height={400} className="flex flex-shrink-0 transform -scale-x-100" />
+                    <img src="\product7.png" alt="hero" width={285} height={350} className="object-fill" />
                     <div className='flex flex-col justify-center gap-8'>
                         <p className="leading-7 [&:not(:first-child)]:mt-6 text-justify">
                             This piece is ethically crafted in our small family-owned workshop in Peru with unmatched attention to detail and care. The Natural color is the actual natural color of the fiber, undyed and 100% traceable.

@@ -60,7 +60,7 @@ function ProductID({ params }: { params: { id: string } }) {
 
                                 <div>
                                     {/* order quantity */}
-                                    
+                                    <Counter />
 
                                 </div>
 

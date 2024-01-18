@@ -102,8 +102,8 @@ function Footbar() {
             <div className='mt-24  border-t-2 border-slate-200  py-5  '>
                 <div className='flex justify-between items-center mx-32'>
                 <div><p className="leading-7 [&:not(:first-child)]:mt-6 text-[#666666]">Copyright © 2022 Dine Market</p></div>
-                 <div><p className="leading-7 [&:not(:first-child)]:mt-6 text-[#666666]">Design by.<span className='font-bold text-black'>Weird Design Studio</span></p></div>
-                <div><p className="leading-7 [&:not(:first-child)]:mt-6 text-[#666666]">Code by.<span className='font-bold text-black'>shabrina12 on github</span></p></div>
+                 <div><p className="leading-7 [&:not(:first-child)]:mt-6 text-[#666666]">Design by.<span className='font-bold text-black'>Rizi Tech Studio</span></p></div>
+                <div><p className="leading-7 [&:not(:first-child)]:mt-6 text-[#666666]">Code by.<span className='font-bold text-black'>rizwanriaz1988 on github</span></p></div>
 
                 </div>
 
