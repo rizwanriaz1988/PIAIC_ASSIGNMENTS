@@ -104,6 +104,7 @@ export function Navbar(params: any) {
                     </Link>
                   </div>
                 ))}
+                <Link href="/cart">Cart</Link>
               </div>
             )}
           </div>

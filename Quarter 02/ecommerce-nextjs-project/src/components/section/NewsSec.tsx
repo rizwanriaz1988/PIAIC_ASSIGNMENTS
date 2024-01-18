@@ -46,14 +46,14 @@ function NewsSec() {
                 {/* right side "picture" and "text" */}
                 {/* ========================================================================================== */}
 
-                <div className='basis-1/2 flex gap-10 my-8 flex-col md:flex-row items-center'>
+                <div className='basis-1/2 flex gap-10 my-8 flex-col md:flex-row items-center '>
                     <img src="\product7.png" alt="hero" width={285} height={350} className="object-fill" />
                     <div className='flex flex-col justify-center gap-8'>
                         <p className="leading-7 [&:not(:first-child)]:mt-6 text-justify">
                             This piece is ethically crafted in our small family-owned workshop in Peru with unmatched attention to detail and care. The Natural color is the actual natural color of the fiber, undyed and 100% traceable.
                         </p>
 
-                        <button className='font-semibold leading-[18px] width-1/2 bg-[#212121] flex items-center self-start justify-center gap-2 text-white px-12 py-3 font-family: Sora, sans-serif;'>See All Product</button>
+                        <button className='font-semibold leading-[18px] width-1/2 bg-[#212121] flex items-center self-center sm:self-start  justify-center gap-2 text-white px-12 py-3 font-family: Sora, sans-serif;'>See All Product</button>
                     </div>
                 </div>
             </div>
@@ -61,7 +61,7 @@ function NewsSec() {
             {/* news letter */}
             {/* ========================================================================================== */}
             <div className='relative py-40 flex flex-col justify-center items-center'>
-                <div className='font-extrabold text-[80px] md:text-[110px] leading-[110px] absolute text-[#212121] opacity-[0.07] '>Newsletter</div>
+                <div className='font-extrabold text-[40px] sm:text-[40px] md:text-[110px] leading-[110px] absolute text-[#212121] opacity-[0.07] '>Newsletter</div>
                 <div className=' flex flex-col items-center  '>
                     <h1 className="scroll-m-20 text-4xl text-center font-extrabold tracking-tight lg:text-5xl pb-4">
                         Subscribe Our Newsletter

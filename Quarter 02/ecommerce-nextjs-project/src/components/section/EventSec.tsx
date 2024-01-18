@@ -22,8 +22,8 @@ function EventSec() {
 
                 {/* Left Side */}
                 <div className='flex flex-col justify-between gap-4 flex-1 basis-1/2'>
-                    <div className='bg-[#d6d6d8] flex justify-between items-center basis-1/2 px-8'>
-                        <div>
+                    <div className='bg-[#d6d6d8] flex flex-col sm:flex-row justify-between items-center basis-1/2 px-8'>
+                        <div className='pt-4'>
                             <h3 className="font-bold text-[1.75rem] leading-[35px]">
                                 GET UP TO&nbsp;
                                 <span className='text-4xl font-extrabold'>60%</span>
@@ -41,9 +41,9 @@ function EventSec() {
                         <p className="font-normal text-sm leading-[18px] tracking-[0.03em];">
                             USE PROMO CODE
                         </p>
-                        <Button className='font-bold text-[17px] leading-[21px] tracking-[0.25em] text-white mt-[5px] px-10 py-2 rounded-lg border-[none] bg-[#474747]'>
+                        <button className='font-bold text-[10px] sm:text-[17px] leading-[21px] tracking-[0.25em] text-white mt-[5px] px-4 sm:px-10 py-2 rounded-lg border-[none] bg-[#474747]'>
                             DINEWEEKENDSALE
-                        </Button>
+                        </button>
                     </div>
                 </div>
                 {/* Right Side */}
