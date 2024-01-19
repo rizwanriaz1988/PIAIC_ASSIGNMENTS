@@ -28,7 +28,7 @@ function ProductID({ params }: { params: { id: string } }) {
 
             {products_db.map((product) => (
                 product.id === params.id && (
-                    <div className='flex flex-col items-center'>
+                    <div className='flex flex-col items-center' key={product.id}>
                         <div className='flex flex-wrap justify-center md:items-start'>
                             <div className='flex'>
                                 {/* for multiple images */}
