@@ -34,7 +34,7 @@ function ProductID({ params }: { params: { id: string } }) {
                                 {/* for multiple images */}
                                 <div className='flex flex-col gap-5'>
                                     {product.sub_images.map((image) => (
-                                        <img src={image} alt="" key={image} className='w-24 h-24 hover:' onMouseEnter={(e) => (setHoverImage(image))} />
+                                        <img src={image} alt="" key={image} className='size-10 sm:size-14 md:size-24 hover:' onMouseEnter={(e) => (setHoverImage(image))} />
                                     ))}
 
                                 </div>
@@ -48,7 +48,7 @@ function ProductID({ params }: { params: { id: string } }) {
 
 
                             {/* for sideline text */}
-                            <div className='flex flex-col gap-10 mt-10 justify-start bg-orange-300 '>
+                            <div className='flex flex-col gap-10 mt-10 justify-start '>
 
                                 <div>
                                     <h1 className=' text-2xl tracking-widest'>{product.name}</h1>
@@ -91,7 +91,7 @@ function ProductID({ params }: { params: { id: string } }) {
 
                             <div className='flex mt-4 md:justify-between w-full flex-wrap justify-center '>
                                 <h1 className='flex flex-shrink-0 font-bold '>PRODUCT CARE</h1>
-                                <div className=' flex flex-col w-full md:w-2/3'>
+                                <div className=' flex flex-col w-full md:w-2/3 px-4'>
                                     {product.product_care.map((item) => (
                                         <li key={item} className=' leading-5 font-bold'>{item}  </li>
 
