@@ -11,11 +11,11 @@ function HeroSec() {
 
             <div className=' flex justify-between flex-col py-[48px] gap-10'>
                 <span className='bg-[#E1EDFF] text-[#0000FF] font-bold py-2.5 px-6 rounded-md align-start w-fit'>Sale 70%</span>
-                <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight md:text-6xl text-[#212121]">An Industrial Take on Streetwear</h1>
-                <p className="leading-7 [&:not(:first-child)]:mt-6 text-[#212121]">
+                <h1 className="scroll-m-20 text-4xl text-center sm:text-left font-extrabold tracking-tight md:text-6xl text-[#212121]">An Industrial Take on Streetwear</h1>
+                <p className="leading-7 [&:not(:first-child)]:mt-6 text-[#212121] text-center sm:text-left">
                     Anyone can beat you but no one can beat your outfit as long as you wear Dine outfits.
                 </p>
-                <Button className='rounded-none bg-[#212121] px-5 py-8 text-lg leading-5 items-center w-fit'>
+                <Button className='rounded-none bg-[#212121] text-center sm:text-left px-5 py-8 text-lg leading-5 items-center w-fit'>
                     <IoCartOutline className="mr-3 h-5 w-5 hover:bg-none" /> Start Shopping
                 </Button>
 

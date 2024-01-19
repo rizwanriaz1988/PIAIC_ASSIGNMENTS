@@ -166,7 +166,7 @@ function ProductSec() {
             <div className='flex items-center flex-col gap-2 mb-8'>
 
                 <span className='text-[#0062f5] tracking-widest text-xs font-bold'>PRODUCTS</span>
-                <h2 className=' text-[32px] font-bold'>Check What We Have</h2>
+                <h2 className=' text-[32px] text-center sm:text-left font-bold'>Check What We Have</h2>
             </div>
 
             {/* ======================================================= */}

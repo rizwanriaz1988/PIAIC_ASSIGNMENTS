@@ -60,7 +60,7 @@ function NewsSec() {
 
             {/* news letter */}
             {/* ========================================================================================== */}
-            <div className='relative py-40 flex flex-col justify-center items-center'>
+            <div className='relative py-20 sm:py-32 flex flex-col justify-center items-center'>
                 <div className='font-extrabold text-[40px] sm:text-[40px] md:text-[110px] leading-[110px] absolute text-[#212121] opacity-[0.07] '>Newsletter</div>
                 <div className=' flex flex-col items-center  '>
                     <h1 className="scroll-m-20 text-4xl text-center font-extrabold tracking-tight lg:text-5xl pb-4">

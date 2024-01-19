@@ -12,7 +12,7 @@ function EventSec() {
             <div className='flex items-center flex-col gap-2 mb-8'>
 
                 <span className='text-[#0062f5] tracking-widest text-xs font-bold'>PROMOTIONS</span>
-                <h2 className=' text-[32px] font-bold'>Our Promotions Events</h2>
+                <h2 className=' text-[32px] font-bold text-center'>Our Promotions Events</h2>
             </div>
 
             {/* ======================================================= */}

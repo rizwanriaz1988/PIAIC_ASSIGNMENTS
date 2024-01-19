@@ -5,7 +5,7 @@ import Link from 'next/link'
 
 function Female() {
     return (
-        <div className='flex-1 mx-32 my-16 flex flex-wrap gap-5 justify-start'>
+        <div className='flex-1 mx-12 sm:mx-32 my-16 flex flex-wrap gap-5 sm:justify-start justify-center'>
             {products_db.map((product) => (product.family === "Female" &&
                 <Link href={`/${product.id}`} key={product.id}>
                 <div className='hover:scale-105 transition duration-300' key={product.id} >
