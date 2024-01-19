@@ -23,7 +23,7 @@ function ProductID({ params }: { params: { id: string } }) {
 
 
     return (
-        <div className='flex-1 md:px-32 px-12 py-16 bg-[#fcfcfc]'>
+        <div className='flex-1 md:px-32 px-12 py-16 justify-center bg-[#fcfcfc]'>
             {/* {params.id} */}
 
             {products_db.map((product) => (
