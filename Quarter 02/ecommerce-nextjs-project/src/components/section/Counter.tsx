@@ -3,7 +3,7 @@ import React from 'react'
 import { useState, useContext } from 'react'
 // import { UserContext } from '@/app/[id]/page'
 
-function Counter() {
+function Counter( {callback}: any) {
   const [quantity, setQuantity] = useState(1)
   // const contextValue = useContext(UserContext);
 
@@ -17,11 +17,12 @@ function Counter() {
         <div className='flex items-center justify-center gap-4 '>
 
           <div className='flex justify-center items-center size-8 bg-slate-100 hover:bg-slate-500 shadow-lg rounded-full'>
-            <button className=' text-3xl' onClick={() => quantity > 1 && setQuantity(quantity- 1)}>-</button>
+            <button className=' text-3xl' onClick={() => (quantity > 1 ? (setQuantity(quantity - 1), callback(quantity - 1)) : null)}
+>-</button>
           </div>
           <div className='text-xl'>{quantity}</div>
           <div className='flex justify-center items-center size-8 bg-slate-100 hover:bg-slate-500 shadow-lg rounded-full'>
-            <button className='text-3xl ' onClick={() => setQuantity(quantity + 1)}>+</button>
+            <button className='text-3xl ' onClick={() => (setQuantity(quantity + 1),callback(quantity + 1))}>+</button>
           </div>
 
         </div>

@@ -66,8 +66,9 @@ function Footbar() {
                 <div className='basis-1/3 flex-col flex flex-shrink-0 my-4'>
                     <div className=''>
                         {/* left side one column */}
+                        <Link href="/">
                         <Image src="/Logo.webp" alt="logo" width={180} height={180} className='pb-4 pt-1 ' />
-
+                        </Link>
                         <p className="leading-5 [&:not(:first-child)]:mt-6 pb-8 ">
                             Small, artisan label that offers a thoughtfully curated collection of high quality everyday essentials made.
                         </p>

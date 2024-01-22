@@ -10,16 +10,31 @@ import SizeSelect from '@/components/section/SizeSelect'
 import Navbar from '@/components/section/Navbar'
 import Cart from '../cart/page'
 import { createContext, useContext } from 'react'
-
-
+import { useDispatch } from 'react-redux'
+import { increment, decrement, reset, addToCart } from '@/store/slice'
+import toast from 'react-hot-toast'
 
 
 
 function ProductID({ params }: { params: { id: string } }) {
-    // const cmingdata = useContext(UserContext)
-
+    const dispatch = useDispatch()
     const [hoverImage, setHoverImage] = useState('')
 
+    const [counterValue, setCounterValue] = useState(1)
+    // console.log("🚀 ~ ProductID ~ counterValue:", counterValue)
+
+
+const counterCallback = (counterQuantity: any)=>{
+    setCounterValue(counterQuantity)
+}
+
+
+    const addItem =(product:any)=>{
+        console.log("🚀 ~ addItem ~ product:", product)
+        dispatch( increment(counterValue))
+        dispatch(addToCart(product))
+        toast.success(`${counterValue} Item added to cart `)
+    }
 
 
     return (
@@ -62,14 +77,14 @@ function ProductID({ params }: { params: { id: string } }) {
 
                                 <div>
                                     {/* order quantity */}
-                                    <Counter />
+                                    <Counter callback={counterCallback} />
 
                                 </div>
 
                                 <div className='flex items-center gap-5'>
                                     {/* for button and price */}
-                                    <Button className='rounded-none bg-[#212121] px-5 py-5 text-sm font-bold leading-5 items-center w-fit shadow-lg'>
-                                        <IoCartOutline className="mr-3 h-5 w-5" /> Add to Cart
+                                    <Button onClick={()=>addItem(product)} className='rounded-none bg-[#212121] px-5 py-5 text-sm font-bold leading-5 items-center w-fit shadow-lg'>
+                                        <IoCartOutline className="mr-3 h-5 w-5"  /> Add to Cart
                                     </Button>
                                     <h1 className='text-2xl font-bold text-slate-800'>{product.price}</h1>
                                 </div>

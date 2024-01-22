@@ -8,6 +8,7 @@ import Footbar from "@/components/section/Footbar";
 import { useState } from "react";
 import { createContext } from "react";
 import ProductID from "./[id]/page";
+import Providing from "../store/store";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -32,10 +33,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className} >
-        
+
+       <Providing>
         <Navbar />
         {children}
         <Footbar />
+        </Providing>
 
       </body>
     </html>

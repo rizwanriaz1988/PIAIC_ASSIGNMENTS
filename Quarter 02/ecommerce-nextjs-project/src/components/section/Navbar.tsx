@@ -9,6 +9,9 @@ import { useContext, createContext, useState, Children } from "react"
 import ProductID from "@/app/[id]/page"
 import Hamburger from 'hamburger-react'
 
+import { increment, decrement, reset } from '@/store/slice'
+import { useDispatch, useSelector } from 'react-redux'
+
 const components: { title: string; href: string; }[] = [
   {
     title: "Female",
@@ -34,6 +37,9 @@ const components: { title: string; href: string; }[] = [
 
 
 export function Navbar(params: any) {
+  
+  const count = useSelector((state: any) => state.cart.value);
+
   const [isOpen, setOpen] = useState(false);
 
   return (
@@ -73,7 +79,7 @@ export function Navbar(params: any) {
               <div className="bg-slate-100 rounded-full p-3.5 ">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-shopping-cart "><circle cx="8" cy="21" r="1" /><circle cx="19" cy="21" r="1" /><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" /></svg>
               </div>
-              <input type="text" value="0" className="rounded-full read-only relative text-xs text-white bottom-[16px] right-[26px] w-[18px] h-[18px] bg-red-500 text-center font-bold self-center" />
+              <input type="text" value={count} className="rounded-full read-only relative text-xs text-white bottom-[16px] right-[26px] w-[18px] h-[18px] bg-red-500 text-center font-bold self-center" />
             </div>
           </Link>
 
