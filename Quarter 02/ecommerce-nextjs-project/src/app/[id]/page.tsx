@@ -19,21 +19,26 @@ import toast from 'react-hot-toast'
 function ProductID({ params }: { params: { id: string } }) {
     const dispatch = useDispatch()
     const [hoverImage, setHoverImage] = useState('')
+    const [quantity, setQuantity] = useState(1)
 
-    const [counterValue, setCounterValue] = useState(1)
+    // const [counterValue, setCounterValue] = useState(1)
     // console.log("🚀 ~ ProductID ~ counterValue:", counterValue)
+    const [size, setSize] = useState('')
 
 
-const counterCallback = (counterQuantity: any)=>{
-    setCounterValue(counterQuantity)
-}
+    // const counterCallback = (counterQuantity: any) => {
+    //     setCounterValue(counterQuantity)
+    // }
 
-
-    const addItem =(product:any)=>{
-        console.log("🚀 ~ addItem ~ product:", product)
-        dispatch( increment(counterValue))
-        dispatch(addToCart(product))
-        toast.success(`${counterValue} Item added to cart `)
+    const sizeCallbackfunction = (size: any) => {
+        setSize(size)
+    }
+    const addItem = (product: any) => {
+        const completeData = { ...product, counterValue: quantity, orderSize: size }
+        console.log("🚀 ~ addItem ~ product:", completeData,)
+        dispatch(increment(quantity))
+        dispatch(addToCart(completeData))
+        toast.success(`${quantity} Item added to cart `)
     }
 
 
@@ -72,19 +77,38 @@ const counterCallback = (counterQuantity: any)=>{
 
 
                                 <div>
-                                    <SizeSelect size={product.sizes} />
+                                    <SizeSelect size={product.sizes} sizeCallback={sizeCallbackfunction} />
                                 </div>
 
                                 <div>
                                     {/* order quantity */}
-                                    <Counter callback={counterCallback} />
+                                    {/* <Counter callback={counterCallback} /> */}
+                                    <div className='flex items-center gap-5'>
+                                        <h1 className='text-lg font-bold'>Quantity:</h1>
+
+                                        <div className='flex items-center justify-center gap-4 '>
+
+                                            <div className='flex justify-center items-center size-8 bg-slate-100 hover:bg-slate-500 shadow-lg rounded-full'>
+                                                <button className=' text-3xl' onClick={() => (quantity > 1 ? (setQuantity(quantity - 1))  : null)}
+                                                >-</button>
+                                            </div>
+                                            <div className='text-xl'>{quantity}</div>
+                                            <div className='flex justify-center items-center size-8 bg-slate-100 hover:bg-slate-500 shadow-lg rounded-full'>
+                                                <button className='text-3xl ' onClick={() => (setQuantity(quantity + 1))}>+</button>
+                                            </div>
+
+                                        </div>
+
+
+
+                                    </div>
 
                                 </div>
 
                                 <div className='flex items-center gap-5'>
                                     {/* for button and price */}
-                                    <Button onClick={()=>addItem(product)} className='rounded-none bg-[#212121] px-5 py-5 text-sm font-bold leading-5 items-center w-fit shadow-lg'>
-                                        <IoCartOutline className="mr-3 h-5 w-5"  /> Add to Cart
+                                    <Button onClick={() => addItem(product)} className='rounded-none bg-[#212121] px-5 py-5 text-sm font-bold leading-5 items-center w-fit shadow-lg'>
+                                        <IoCartOutline className="mr-3 h-5 w-5" /> Add to Cart
                                     </Button>
                                     <h1 className='text-2xl font-bold text-slate-800'>{product.price}</h1>
                                 </div>

@@ -1,11 +1,15 @@
 // Client-side component
 import React, { useState } from 'react';
 
-function SizeSelect(props: { size: string[] }) {
-  const [activeSize, setActiveSize] = useState<string | null>(null);
-
+function SizeSelect(props: { size: string[] , sizeCallback: any}) {
+  const [activeSize, setActiveSize] = useState<string | null>(props.size[0]);
+  props.sizeCallback(activeSize)
   const handleSizeClick = (size: string) => {
-    setActiveSize(size === activeSize ? null : size);
+    // Always keep the current button selected
+    if (activeSize !== size) {
+      setActiveSize(size);
+      // Additional logic if needed
+    }
   };
 
   return (
