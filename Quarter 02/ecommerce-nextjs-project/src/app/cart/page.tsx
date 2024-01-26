@@ -60,30 +60,31 @@ function Cart() {
     dispatch(increment1({id: itemId, counterValue: 1}))
   }
   return (
-    <div className='mx-40 '>
+    <div className='md:mx-40 mx-12 '>
       <h1 className='font-bold  text-xl my-5'>Shopping Cart</h1>
 
 
-      <div className='flex justify-between gap-10 '>
-        <div className='flex flex-col gap-5  basis-2/3'>
+      <div className='flex justify-between gap-10 flex-wrap lg:flex-nowrap'>
+        <div className='flex flex-col gap-5  lg:basis-2/3 basis-full'>
           {/* <h1 className='font-bold text-center'>quantity: {count}</h1> */}
           
           {basket.length > 0 &&
             basket.map((item: any) => (item.image &&
-              <div className=' flex p-2 justify-between bg-slate-100 shadow rounded-md ' key={item.id}>
+              <div className=' flex p-2 justify-between bg-slate-100 shadow rounded-md flex-wrap md:flex-nowrap' key={item.id}>
 
-                <div className='flex gap-5'>
-                  <Image src={item.image} alt={item.name} width={150} height={10} className='rounded-md '></Image>
+                <div className='flex gap-5 flex-wrap sm:flex-nowrap'>
+                  <Image src={item.image} alt={item.name} width={150} height={10} className='rounded-md w-full'></Image>
 
-                  <div className='flex flex-col justify-between bg-green-300 flex-shrink-0'>
+                  <div className='flex flex-col justify-between  flex-shrink-0'>
                     <h1 className='font-bold text-xl'>{item.name}</h1>
                     <h1>{item.category}</h1>
+                    <h1>Deliver Time: &nbsp;{item.id}&nbsp;Days</h1>
 
                     <h1 className='font-bold'>${parseFloat(item.price.replace('$', ''))*item.counterValue}</h1>
                   </div>
                 </div>
 
-                <div className=' bg-yellow-200 flex flex-col justify-between items-end'>
+                <div className='  flex flex-row-reverse  basis-full items-center justify-between md:flex-col md:justify-between md:items-end '>
                   <button title="Remove" onClick={() => removeItemhandler(item.id )}>
                     <RiDeleteBinLine className="h-5 w-5  text-red-500 hover:text-red-600" size={20} />
                   </button>
@@ -112,7 +113,7 @@ function Cart() {
 
 
 
-        <div className='bg-slate-100 shadow rounded-md p-5 gap-5 flex flex-col max-h-52 basis-1/3'>
+        <div className='bg-slate-100 shadow rounded-md p-5 gap-5 flex flex-col max-h-52 basis-full lg:basis-1/3'>
           <h1 className='font-bold  text-xl '>Cart Summary</h1>
           <div className='flex justify-between'>
             <h1 className=''>Total Items:</h1>
