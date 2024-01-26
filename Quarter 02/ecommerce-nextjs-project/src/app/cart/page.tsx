@@ -7,24 +7,24 @@ import { Button } from '@/components/ui/button'
 import { RiDeleteBinLine } from "react-icons/ri";
 import Counter from '@/components/section/Counter'
 import { decrement1, increment1, removeItem } from '@/store/slice'
+
 function Cart() {
   const [basket, setBasket] = useState<any>(useSelector((state: any) => state.cart.basket))
-  const count = useSelector((state: any) => state.cart.value)
-  const [quantity, setQuantity] = useState(0)
   const dispatch = useDispatch()
+  const newBasket = useSelector((state: any) => state.cart.basket);
 
-  const totalSum = basket.reduce((sum: any, item: { price?: any }) => {
+  const totalSum = newBasket.reduce((sum: any, item: { price?: any,counterValue?: any }) => {
     // Check if item.price is defined and not null
     if (item.price !== undefined && item.price !== null) {
       // Extract the numerical value from the string and add to the sum
-      return sum + parseFloat(item.price.replace('$', ''));
+      return sum + parseFloat(item.price.replace('$', ''))*item.counterValue;
     } else {
       // Handle the case where item.price is undefined or null
       return sum;
     }
   }, 0);
 
-  const totalOrderCount = basket.reduce((sum: any, item: { counterValue?: any }) => {
+  const totalOrderCount = newBasket.reduce((sum: any, item: { counterValue?: any }) => {
     // Check if item.price is defined and not null
     if (item.counterValue !== undefined && item.counterValue !== null) {
       // Extract the numerical value from the string and add to the sum
@@ -37,30 +37,27 @@ function Cart() {
 
   const removeItemhandler = (id: any) => {
     const newBasket = basket.filter((item: any) => item.id !== id);
-    // // const newQuantityinBasket = {newBasket.counterValue-}
     setBasket(newBasket);
     dispatch(removeItem({id: id}))
   }
 
-  const handleDecrement = (id: any) => {
-    const newBasket = basket.map((item: any) => {
-      if (item.id === id) {
-        return { ...item, counterValue: item.counterValue - 1 };
-      }
-    })
-    // setBasket(newBasket)
-    dispatch(decrement1({id: id, counterValue: 1}))
+  const handleDecrement = (itemId: any) => {
+    setBasket((prevItems:any) =>
+    prevItems.map((item: any) =>
+      item.id === itemId && item.counterValue > 1 ? { ...item, counterValue: item.counterValue - 1 } : item
+    )
+  )
+    dispatch(decrement1({id: itemId, counterValue: 1}))
     
   }
 
-  const handleIncrement = (id: any) => {
-    const newBasket = basket.map((item: any) => {
-      if (item.id === id) {
-        return { ...item, counterValue: item.counterValue + 1 };
-      }
-    })
-    // setBasket(newBasket)
-    dispatch(increment1({id: id, counterValue: 1}))
+  const handleIncrement = (itemId: any) => {
+    setBasket((prevItems:any) =>
+    prevItems.map((item: any) =>
+      item.id === itemId ? { ...item, counterValue: item.counterValue + 1 } : item
+    )
+  )
+    dispatch(increment1({id: itemId, counterValue: 1}))
   }
   return (
     <div className='mx-40 '>
@@ -82,7 +79,7 @@ function Cart() {
                     <h1 className='font-bold text-xl'>{item.name}</h1>
                     <h1>{item.category}</h1>
 
-                    <h1 className='font-bold'>{item.price}</h1>
+                    <h1 className='font-bold'>${parseFloat(item.price.replace('$', ''))*item.counterValue}</h1>
                   </div>
                 </div>
 
@@ -98,22 +95,15 @@ function Cart() {
 
                       <div className='flex justify-center items-center size-8 bg-slate-100 hover:bg-slate-500 shadow-lg rounded-full'>
                         {/* <button className=' text-3xl' onClick={() => (dispatch(decrement1(item)))} */}
-                        <button className=' text-3xl' onClick={()=>dispatch(decrement1({id: item.id, counterValue: 1}))}
-                        >-</button>
+                        <button className=' text-3xl' onClick={()=>handleDecrement(item.id)}>-</button>
                       </div>
 
                       <div className='text-xl'>{item.counterValue}</div>
-
                       <div className='flex justify-center items-center size-8 bg-slate-100 hover:bg-slate-500 shadow-lg rounded-full'>
-                        <button className='text-3xl ' onClick={() => dispatch(increment1({id: item.id, counterValue: 1}))}>+</button>
+                        <button className='text-3xl ' onClick={() => handleIncrement(item.id)}>+</button>
                       </div>
-
                     </div>
-
-
-
                   </div>
-                  {/* <Counter /> */}
                 </div>
               </div>
             ))
@@ -124,25 +114,17 @@ function Cart() {
 
         <div className='bg-slate-100 shadow rounded-md p-5 gap-5 flex flex-col max-h-52 basis-1/3'>
           <h1 className='font-bold  text-xl '>Cart Summary</h1>
-
           <div className='flex justify-between'>
             <h1 className=''>Total Items:</h1>
-            <h1 className=''>{count}</h1>
+            <h1 className=''>{totalOrderCount}</h1>
           </div>
           <div className='flex justify-between'>
             <h1 className=''>Sub Total:</h1>
             <h1 className=''>${totalSum}</h1>
           </div>
-          <button className='bg-[#373737] text-white rounded  w-full'>Checkout</button>
-
-
+          <button className='bg-[#373737] text-white rounded py-2 w-full'>Checkout</button>
         </div>
-
-
       </div>
-
-
-
     </div>
   )
 }

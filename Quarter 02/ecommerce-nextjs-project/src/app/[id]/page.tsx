@@ -20,23 +20,18 @@ function ProductID({ params }: { params: { id: string } }) {
     const dispatch = useDispatch()
     const [hoverImage, setHoverImage] = useState('')
     const [quantity, setQuantity] = useState(1)
-
-    // const [counterValue, setCounterValue] = useState(1)
-    // console.log("🚀 ~ ProductID ~ counterValue:", counterValue)
     const [size, setSize] = useState('')
 
-
-    // const counterCallback = (counterQuantity: any) => {
-    //     setCounterValue(counterQuantity)
-    // }
-
+ 
     const sizeCallbackfunction = (size: any) => {
         setSize(size)
     }
+
+
     const addItem = (product: any) => {
         const completeData = { ...product, counterValue: quantity, orderSize: size }
         console.log("🚀 ~ addItem ~ product:", completeData,)
-        dispatch(increment(quantity))
+        // dispatch(increment(quantity))
         dispatch(addToCart(completeData))
         toast.success(`${quantity} Item added to cart `)
     }
@@ -81,8 +76,8 @@ function ProductID({ params }: { params: { id: string } }) {
                                 </div>
 
                                 <div>
-                                    {/* order quantity */}
-                                    {/* <Counter callback={counterCallback} /> */}
+                                    {/* ========================== counter ============================= */}
+                                    {/* ================================================================ */}
                                     <div className='flex items-center gap-5'>
                                         <h1 className='text-lg font-bold'>Quantity:</h1>
 
@@ -96,14 +91,10 @@ function ProductID({ params }: { params: { id: string } }) {
                                             <div className='flex justify-center items-center size-8 bg-slate-100 hover:bg-slate-500 shadow-lg rounded-full'>
                                                 <button className='text-3xl ' onClick={() => (setQuantity(quantity + 1))}>+</button>
                                             </div>
-
                                         </div>
-
-
-
                                     </div>
-
                                 </div>
+
 
                                 <div className='flex items-center gap-5'>
                                     {/* for button and price */}

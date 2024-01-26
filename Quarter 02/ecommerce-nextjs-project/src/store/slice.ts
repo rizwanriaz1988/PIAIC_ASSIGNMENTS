@@ -31,13 +31,13 @@ const counterSlice = createSlice({
         },
         increment1: (state, action: PayloadAction<any>) => {
             // action.payload.counterValue += 1
-            // state.basket.map((item: any) => item.id === action.payload.id ? item.counterValue += 1 : item.counterValue)
-            // state.value += 1
+            state.basket.map((item: any) => item.id === action.payload.id  ? item.counterValue += 1 : item.counterValue)
+            state.value += 1
             
         },
         decrement1: (state, action: PayloadAction<any>) => {
             // action.payload.counterValue -= 1
-            state.basket.map((item: any) => item.id === action.payload.id ? item.counterValue -= 1 : item.counterValue)
+            state.basket.map((item: any) => item.id === action.payload.id && item.counterValue > 1 ? item.counterValue -= 1 : item.counterValue)
             state.value -= 1
         },
 
