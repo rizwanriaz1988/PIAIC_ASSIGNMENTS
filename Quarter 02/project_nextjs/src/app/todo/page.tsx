@@ -23,9 +23,6 @@ export default function Todo() {
   
   
   return (
-    // <div className="flex flex-col items-center justify-center py-16">
-    //   <div className="flex flex-col bg-white py-0.5 px-0.5 rounded-md w-2/5">
-    //     <div className=" flex items-center justify-center bg-slate-900 py-1 rounded-md">
     <div className="  flex justify-center">
       <div className="bg-white p-0.5 my-1 md:my-4 rounded-md w-11/12 sm:w-5/12 ">
         <div className="flex justify-center bg-slate-900 py-1 rounded-md ">
@@ -35,14 +32,17 @@ export default function Todo() {
           {/*====================== Main Div for working ====================*/}
           {/*============================= Start ============================*/}
           <div className=" w-full ">
-          <Tabs defaultValue={todoList} onValueChange={(value:string) => {setTodoList(value); setDivVisible(false)}} className="w-full text-white py-1 px-1 ">
+          <Tabs defaultValue={todoList} onValueChange={(value:string) => {setTodoList(value)}} className="w-full text-white py-1 px-1 ">
+            {/* tabs(pending/completed) and button(add task) */}
           <div className="flex justify-between mx-1 flex-shrink">
+              {/* tabs list */}
               <div className="">
                 <TabsList className="bg-slate-900 text-white " >
                   <TabsTrigger value="pending" className="bg-slate-900 text-slate-400">Pending</TabsTrigger>
                   <TabsTrigger value="completed" className="bg-slate-900 text-slate-400">Completed</TabsTrigger>
                 </TabsList>
               </div>
+              {/* "Add Task" button */}
               <div className="mx-1">
                 <Button variant={"secondary"} onClick={() => setmainSave(true)} className=" my-1 bg-green-700 hover:bg-green-700 text-black hover:text-white"> Add Task</Button>
               </div>
@@ -51,11 +51,11 @@ export default function Todo() {
             <TabsContent value="pending">
                 {/*==========================================================Pending==*/}
               
-              {rerender && <TodoList todoList={todoList} />}
+              <TodoList todoList={todoList} />
             </TabsContent>
             <TabsContent value="completed">
                 {/*==========================================================Pending==*/}
-                {rerender && <TodoList todoList={todoList} />}
+                <TodoList todoList={todoList} />
             </TabsContent>
           </div>
           }

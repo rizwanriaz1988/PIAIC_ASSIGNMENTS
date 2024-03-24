@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import TodoList from "./status";
-
+import fastApi_URL from "../constants";
 interface Todo {
   id: number;
   title: string;
@@ -12,7 +12,7 @@ interface Todo {
 interface todolist_type {
   editData: Todo;
   btnState: boolean;
-  onCancel: any;
+  onCancel: any;    
   // editTask:any;
   btnS: any;
   main: any;
@@ -35,7 +35,7 @@ export default function Newtask(props?: any) {
     if (taskTitle) {
       if (props.btnState) {
         try {
-          const api_url = `https://json-server-l2cp.onrender.com/todos/${props.editData.id}`;
+          const api_url = `${fastApi_URL}/${props.editData.id}`;
           await fetch(api_url, {
             method: "PATCH", // or 'PUT'
             headers: {
@@ -57,7 +57,7 @@ export default function Newtask(props?: any) {
         }
       } else {
         try {
-          const api_url = `https://json-server-l2cp.onrender.com/todos/`;
+          const api_url = `${fastApi_URL}`;
           await fetch(api_url, {
             method: "POST", // or 'PUT'
             headers: {
@@ -97,10 +97,16 @@ export default function Newtask(props?: any) {
       }
     }
   }
+
+
+
+
+
   return (
     // (closediv &&
     <>
       <div className=" flex flex-col my-4">
+        {/* title div */}
         <div className="flex justify-center">
           <input
             type="text"
@@ -111,6 +117,7 @@ export default function Newtask(props?: any) {
             placeholder="Enter Task Title"
           />
         </div>
+        {/* description div */}
         <div className="flex justify-center my-2">
           <textarea
             onChange={(e) => setTaskDescription(e.target.value)}
@@ -121,6 +128,7 @@ export default function Newtask(props?: any) {
             placeholder="Enter Task Description"
           />
         </div>
+        {/* buttons div */}
         <div className="flex justify-center my-2">
           <Button
             variant={"secondary"}

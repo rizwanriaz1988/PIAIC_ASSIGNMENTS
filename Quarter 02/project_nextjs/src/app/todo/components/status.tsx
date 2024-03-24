@@ -1,5 +1,4 @@
 "use client";
-import { Button } from "@/components/ui/button";
 import { Suspense, useEffect, useRef, useState } from "react";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { MdDoneOutline } from "react-icons/md"
@@ -7,7 +6,9 @@ import { FiEdit } from "react-icons/fi";
 import { ImUndo2 } from "react-icons/im"
 import Todo from "../page";
 import Newtask from "./newtask";
-
+import fastApi_URL from "../constants";
+import Low from "../loading";
+import Loading2 from "./loading2";
 interface Todo {
   id: number;
   title: string;
@@ -19,6 +20,10 @@ interface todolist_type {
   todoList: string;
 }
 let data: any;
+
+
+
+
 const TodoList = (props: todolist_type) => {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [btnState, setbtnState] = useState<boolean>(false);
@@ -33,7 +38,6 @@ const TodoList = (props: todolist_type) => {
   const [btnSave, setBtnSave] = useState(true);
   const [isOverflowed, setIsOverflowed] = useState<boolean>(false);
 
-  const [morebutton, setmorebutton] = useState("see more");
   const descriptionRef = useRef<any>([null]);
 
   const [overflowStatus, setOverflowStatus] = useState<{
@@ -44,15 +48,23 @@ const TodoList = (props: todolist_type) => {
     {}
   );
 
+  const [isLoading, setIsLoading] = useState(true); // Initialize loading state
+
+// const fastApi_URL = "https://json-server-l2cp.onrender.com/todos";
+
   const fetchData = async () => {
-    const api_url = "https://json-server-l2cp.onrender.com/todos";
+    const api_url = fastApi_URL;
+    console.log("---------------",api_url);
     try {
       const response = await fetch(api_url); // Fetch data from the API route
+      console.log("response", response);
       data = await response.json();
-      console.log(data)
+      console.log('coming data' , data)
       setTodos(data);
     } catch (error) {
       console.error("Error fetching todos 1:", error);
+    } finally {
+      setIsLoading(false); // Set loading state to false when data is fetched
     }
   };
 
@@ -72,7 +84,7 @@ const TodoList = (props: todolist_type) => {
 
     setTodos(updatedTodos);
     try {
-      const api_url = `https://json-server-l2cp.onrender.com/todos/${todoId}`;
+      const api_url = `${fastApi_URL}/${todoId}`;
       await fetch(api_url, {
         method: "PATCH", // or 'PUT'
         headers: {
@@ -89,7 +101,7 @@ const TodoList = (props: todolist_type) => {
     const updatedTodos = todos.filter((todo) => todo.id !== todoId);
     setTodos(updatedTodos);
     try {
-      const api_url = `https://json-server-l2cp.onrender.com/todos/${todoId}`;
+      const api_url = `${fastApi_URL}/${todoId}`;
       await fetch(api_url, {
         method: "DELETE", // or 'PUT'
         headers: {
@@ -104,7 +116,7 @@ const TodoList = (props: todolist_type) => {
     let forEditing: any;
 
     try {
-      const api_url = `https://json-server-l2cp.onrender.com/todos/${todoId}`;
+      const api_url = `${fastApi_URL}/${todoId}`;
       const response = await fetch(api_url);
       forEditing = await response.json();
     } catch (error) {
@@ -151,9 +163,11 @@ const TodoList = (props: todolist_type) => {
       }
     });
   }, [todos]);
-
+// ========================== return ====================== return ==================== return ===========
+// =================== return ====================== return ==================== return ==================
   return (
     <div>
+      {isLoading ? <Loading2 /> : 
       <div>
         {Array.isArray(todos) &&
         todos.length > 0 &&
@@ -297,6 +311,7 @@ const TodoList = (props: todolist_type) => {
           <p>No Task Exist</p>
         )}
       </div>
+      }
     </div>
   );
 };
