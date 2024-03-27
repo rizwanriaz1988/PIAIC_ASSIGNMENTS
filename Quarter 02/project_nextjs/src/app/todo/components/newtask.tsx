@@ -35,7 +35,7 @@ export default function Newtask(props?: any) {
     if (taskTitle) {
       if (props.btnState) {
         try {
-          const api_url = `${fastApi_URL}/${props.editData.id}`;
+          const api_url = `${fastApi_URL}${props.editData.id}`;
           await fetch(api_url, {
             method: "PATCH", // or 'PUT'
             headers: {

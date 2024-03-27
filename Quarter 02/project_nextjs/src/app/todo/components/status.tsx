@@ -77,6 +77,7 @@ const TodoList = (props: todolist_type) => {
   }, [btnSave]);
 
   const todostatus = async (todoId: number, markAsComplete: boolean) => {
+    console.log("todostatus",markAsComplete);
     const updatedTodos = todos.map((todo) =>
       // todo.id === todoId ? { ...todo, completed: markAsComplete } : todo
       todo.id === todoId ? { ...todo, status: markAsComplete } : todo
@@ -84,7 +85,7 @@ const TodoList = (props: todolist_type) => {
 
     setTodos(updatedTodos);
     try {
-      const api_url = `${fastApi_URL}/${todoId}`;
+      const api_url = `${fastApi_URL}${todoId}`;
       await fetch(api_url, {
         method: "PATCH", // or 'PUT'
         headers: {
@@ -101,7 +102,7 @@ const TodoList = (props: todolist_type) => {
     const updatedTodos = todos.filter((todo) => todo.id !== todoId);
     setTodos(updatedTodos);
     try {
-      const api_url = `${fastApi_URL}/${todoId}`;
+      const api_url = `${fastApi_URL}${todoId}`;
       await fetch(api_url, {
         method: "DELETE", // or 'PUT'
         headers: {
@@ -116,7 +117,7 @@ const TodoList = (props: todolist_type) => {
     let forEditing: any;
 
     try {
-      const api_url = `${fastApi_URL}/${todoId}`;
+      const api_url = `${fastApi_URL}${todoId}`;
       const response = await fetch(api_url);
       forEditing = await response.json();
     } catch (error) {
@@ -220,7 +221,7 @@ const TodoList = (props: todolist_type) => {
                                 <RiDeleteBinLine className="h-5 w-5  text-red-500 hover:text-red-600 "   />
                               </button>
                               <button onClick={() => editTask(todo.id)} title="Click to edit">
-                                <FiEdit className="h-5 w-5 mx-2  text-red-500 hover:text-red-600" />
+                                <FiEdit className="h-5 w-5 mx-2  text-yellow-500 hover:text-yellow-600" />
                               </button>
                             </div>
                             <button
@@ -286,7 +287,7 @@ const TodoList = (props: todolist_type) => {
                                   <RiDeleteBinLine className="h-5 w-5  text-red-500 hover:text-red-600" />
                                 </button>
                                 <button onClick={() => editTask(todo.id)} title="Click to edit">
-                                  <FiEdit className="h-5 w-5   text-red-500 hover:text-red-600" />
+                                  <FiEdit className="h-5 w-5   text-yellow-500 hover:text-yellow-600" />
                                 </button>
                               </div>
                               <button
