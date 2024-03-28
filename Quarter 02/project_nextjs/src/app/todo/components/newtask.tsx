@@ -67,6 +67,7 @@ export default function Newtask(props?: any) {
               title: taskTitle,
               description: taskDescription,
               completed: "pending",
+              status: false,
             }),
           });
           setTaskTitle("");
