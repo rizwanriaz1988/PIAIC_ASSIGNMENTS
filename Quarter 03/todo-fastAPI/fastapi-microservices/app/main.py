@@ -79,7 +79,7 @@ def get_session():
 
 @app.get("/")
 def read_root():
-    return {"Hello": "World with dev docker rizi with postgres "}
+    return {"Hello": "World with dev docker rizi with postgres and pgadmin 2"}
 
 
 @app.get("/todos/")
