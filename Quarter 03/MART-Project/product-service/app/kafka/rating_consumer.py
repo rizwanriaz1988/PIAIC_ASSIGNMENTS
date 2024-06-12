@@ -3,15 +3,15 @@ from aiokafka import AIOKafkaConsumer
 import json
 
 from app.db.db_engine import get_session
-from app.db.models.product_model import Product
+from app.db.models.product_model import  ProductRating
 from app.api.product_crud import add_new_product
 
-async def consume_messages(topic, bootstrap_servers):
+async def rating_consumer(topic, bootstrap_servers):
     # Create a consumer instance.
     consumer = AIOKafkaConsumer(
         topic,
         bootstrap_servers=bootstrap_servers,
-        group_id="my-group",
+        group_id="rating-group",
         auto_offset_reset='earliest'
     )
 
@@ -30,7 +30,7 @@ async def consume_messages(topic, bootstrap_servers):
             with next(get_session()) as session:
                 print("SAVING DATA TO DATABASE")
                 # to convert dict to json
-                db_insert_product =add_new_product(product_data=Product(**product_data), session=session)
+                db_insert_product =add_new_product(product_data=ProductRating(**product_data), session=session)
                 print("DB_INSERT_PRODUCT", db_insert_product)
 
             # Here you can add code to process each message.

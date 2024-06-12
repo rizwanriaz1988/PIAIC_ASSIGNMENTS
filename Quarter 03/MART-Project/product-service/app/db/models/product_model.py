@@ -1,3 +1,4 @@
+# product_model.py
 from typing import Optional
 from sqlmodel import Field, SQLModel, Relationship
 
@@ -18,9 +19,22 @@ class Product(SQLModel, table=True):
     # rating: float | None = None # One to Manu Relationship
 
 
-# class ProductRating(SQLModel, table=True):
-#     id: int | None = Field(default=None, primary_key=True)
-#     product_id: int = Field(foreign_key="product.id")
-#     rating: float
-#     comment: str | None = None
-#     product: Optional[Product] = Relationship(back_populates="rating")
+class ProductRating(SQLModel, table=True):
+    id: int | None = Field(default=None, primary_key=True)
+    rating: float
+    comment: str | None = None
+    product_id: int 
+    # product_id: int = Field(foreign_key="product.id")
+    # product: Optional[Product] = Relationship(back_populates="rating")
+
+
+class ProductUpdate(SQLModel):
+    name: Optional[str] = None
+    description: Optional[str] = None
+    price: Optional[float] = None
+    expiry: Optional[str] = None
+    brand: Optional[str] = None
+    weight: Optional[float] = None
+    category: Optional[str] = None
+    sku: Optional[str] = None
+   
