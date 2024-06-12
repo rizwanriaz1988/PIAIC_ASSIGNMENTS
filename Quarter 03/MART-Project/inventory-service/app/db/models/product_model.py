@@ -7,3 +7,7 @@ class ProductInventory(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
     product_id: int
     quantity: int = Field(default=0)
+
+
+class UpdateProduct(SQLModel):
+    quantity: int

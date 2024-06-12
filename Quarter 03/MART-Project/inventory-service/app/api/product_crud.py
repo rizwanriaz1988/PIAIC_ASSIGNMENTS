@@ -10,7 +10,7 @@ import json
 from app.db.db_engine import get_session
 # from app.db.models.product_model import Todo
 from app.kafka.producer import get_kafka_producer
-from app.db.models.product_model import ProductInventory
+from app.db.models.product_model import ProductInventory, UpdateProduct
 # from app.db.kafka_engine import get_kafka_producer
 
 
@@ -47,7 +47,9 @@ def read_inventory(session: Annotated[Session, Depends(get_session)]):
 
 @router.get("/inventory/{inventory_id}", response_model=ProductInventory)
 def read_todo(inventory_id: int, session: Annotated[Session, Depends(get_session)]):
-        inventory_item = session.get(ProductInventory, inventory_id)
+        query = select (ProductInventory).where(ProductInventory.id == inventory_id)
+        inventory_item = session.exec(query).one_or_none()
+        # inventory_item = session.get(ProductInventory, inventory_id)
         return inventory_item
 
 
@@ -67,15 +69,16 @@ def read_todo(inventory_id: int, session: Annotated[Session, Depends(get_session
 
 
 
-@router.put("/inventory/{inventory_id}", response_model=ProductInventory)
-async def update_inventory(inventory_id: int, inventory: ProductInventory, session: Annotated[Session, Depends(get_session)],producer: Annotated[AIOKafkaProducer, Depends(get_kafka_producer)]):
-        query = select (ProductInventory).where(ProductInventory.id == inventory_id)
+@router.put("/inventory/{inventory_id}", response_model=UpdateProduct)
+async def update_inventory(inventory_id: int, inventory: UpdateProduct, session: Annotated[Session, Depends(get_session)],producer: Annotated[AIOKafkaProducer, Depends(get_kafka_producer)]):
+        query = select (ProductInventory).where(ProductInventory.product_id == inventory_id)
         product_to_update = session.exec(query).one_or_none()
         print("\n\n product_to_update \n\n", product_to_update )
         if not product_to_update:
             raise HTTPException(status_code=404, detail="Product not found")
 
         hero_data = inventory.model_dump(exclude_unset=True)
+        print("\n\n hero_data\n\n", hero_data)
         updated_product = product_to_update.sqlmodel_update(hero_data)
         print("\n\n updated_product\n\n",updated_product)
         print("\n\n product type\n\n",type(updated_product))
