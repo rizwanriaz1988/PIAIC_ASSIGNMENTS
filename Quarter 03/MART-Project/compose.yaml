@@ -1,18 +1,6 @@
 version: '3.8'
 name: template01
 services:
-  api:
-    build:
-      context: ./todo
-      dockerfile: Dockerfile.dev
-    volumes:
-      - ./todo:/code  # Sync local development directory with the container
-    depends_on:
-        - postgres_db
-        - broker
-    ports:
-      - "8000:8000"  # Expose container port 8000 to host port 8000  
-
   productservice:
     build:
       context: ./product-service
@@ -36,31 +24,18 @@ services:
         - broker
     ports:
       - "8011:8000"  # Expose container port 8000 to host port 8000  
-      
-  api2:
+
+  userservice:
     build:
-      context: ./microservice_02
+      context: ./user-service
       dockerfile: Dockerfile.dev
     volumes:
-      - ./microservice_02:/code  # Sync local development directory with the container
+      - ./user-service:/code  # Sync local development directory with the container
     depends_on:
-        - postgres_db
+        - userservicedb
         - broker
     ports:
-      - "8002:8000"  # Expose container port 8000 to host port 8000  
-
-  postgres_db:
-    image: postgres:latest  # Use the official PostgreSQL image
-    restart: always
-    container_name: PostgresCont
-    environment:
-        - POSTGRES_USER=ziakhan
-        - POSTGRES_PASSWORD=my_password
-        - POSTGRES_DB=mydatabase
-    ports:
-        - '5433:5432'
-    volumes:
-        - postgres_db:/var/lib/postgresql/data
+      - "8012:8000"  # Expose container port 8000 to host port 8000  
 
   productservicedb:
     image: postgres:latest  # Use the official PostgreSQL image
@@ -87,6 +62,19 @@ services:
         - '5435:5432'
     volumes:
         - postgres_inventory_db:/var/lib/postgresql/data
+
+  userservicedb:
+    image: postgres:latest  # Use the official PostgreSQL image
+    restart: always
+    container_name: userservicedb
+    environment:
+        - POSTGRES_USER=ziakhan
+        - POSTGRES_PASSWORD=my_password
+        - POSTGRES_DB=mydatabase
+    ports:
+        - '5436:5432'
+    volumes:
+        - postgres_user_db:/var/lib/postgresql/data
 
   broker:
     image: apache/kafka:3.7.0
@@ -138,6 +126,8 @@ volumes:
   postgres_product_db:
     driver: local
   postgres_inventory_db:
+    driver: local
+  postgres_user_db:
     driver: local
 
 networks:

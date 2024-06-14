@@ -20,7 +20,7 @@ class Product(SQLModel, table=True):
 
 
 class ProductRating(SQLModel, table=True):
-    id: int | None = Field(default=None, primary_key=True)
+    id: Optional[int] = Field(default=None, primary_key=True)
     rating: float
     comment: str | None = None
     product_id: int 

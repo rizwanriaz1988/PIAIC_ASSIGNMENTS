@@ -12,6 +12,8 @@ from app.db.db_engine import get_session
 from app.kafka.producer import get_kafka_producer
 from app.db.models.product_model import Product, ProductRating, ProductUpdate
 # from app.db.kafka_engine import get_kafka_producer
+from app.api.crud import add_product_rating_func
+# from app.chatgpt.gpt import run_conversation
 
 
 router = APIRouter()
@@ -113,17 +115,9 @@ async def delete_todo(todo_id: int, session: Annotated[Session, Depends(get_sess
 
 @router.post("/todos/{todo_id}/ratings", response_model=ProductRating)
 async def add_product_rating(todo_id: int, product_rating: ProductRating, session: Annotated[Session, Depends(get_session)],producer: Annotated[AIOKafkaProducer, Depends(get_kafka_producer)]):
-        product_rating.product_id = todo_id
+        func_return =await add_product_rating_func(todo_id, product_rating, session,producer)
+        return func_return
 
-        product_rating_dict = {field: getattr(product_rating, field) for field in product_rating.dict()}
-        product_rating_dict_json = json.dumps(product_rating_dict).encode("utf-8")
-        print("product_ratingJSON:", product_rating_dict_json)
-        # Produce message
-        await producer.start()
-        await producer.send_and_wait("rating",product_rating_dict_json)
-        # session.add(product_rating)
-        # session.commit()
-        # session.refresh(product_rating)
-        return product_rating
-
-       
+# @router.get("/gpt")
+# def get_ai_response(main_request: str, session: Annotated[Session, Depends(get_session)],producer: Annotated[AIOKafkaProducer, Depends(get_kafka_producer)]):
+#     return run_conversation(main_request)
