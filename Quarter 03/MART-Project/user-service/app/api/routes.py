@@ -2,18 +2,22 @@
 from http.client import HTTPException
 from typing import Annotated
 from sqlmodel import Session, SQLModel, create_engine, select
-from fastapi import Depends , APIRouter
+from fastapi import Depends , APIRouter,Form
+from fastapi.security import OAuth2PasswordRequestForm, OAuth2PasswordBearer
 from aiokafka import AIOKafkaProducer 
+from app.auth.acc_token import create_access_token, decode_access_token                                                                                 
 import json
+from jose import JWTError
 
 
 from app.db.db_engine import get_session
 from app.kafka.producer import get_kafka_producer
-from app.db.db_model import User
-from app.api.crud import add_new_user
+from app.db.db_model import User, UserUpdate
+from app.api.crud import add_new_user, get_user_by_id, get_all_users, delete_user_by_id, update_user_by_id, login, fake_user_check
 
 
 router = APIRouter()
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
 
 # for adding data to database through consumer
 def add_new_product(product_data, session: Session):
@@ -38,17 +42,18 @@ def read_root():
     return {"Hello": "User Service hello!!"}
 
 
-# @router.get("/todos/", response_model=list[Product])
-# def read_todos(session: Annotated[Session, Depends(get_session)]):
-#         todos = session.exec(select(Product)).all()
-#         return todos
+@router.get("/users/", response_model=list[User])
+def read_todos(token: Annotated[str, Depends(oauth2_scheme)], session: Annotated[Session, Depends(get_session)]):
+        user_token_data = decode_access_token(token=token)
+        user_in_db = fake_user_check(user_data=user_token_data["sub"],session= session)
+        all_users = get_all_users(session)
+        return all_users
 
 
-# @router.get("/todos/{todo_id}", response_model=Product)
-# def read_todo(todo_id: int, session: Annotated[Session, Depends(get_session)]):
-#         todo = session.get(Product, todo_id)
-#         return todo
-
+@router.get("/user/{user_id}", response_model=User)
+def read_user(user_id: int, session: Annotated[Session, Depends(get_session)]):
+        user = get_user_by_id(id=user_id, session=session)
+        return user
 
 
 @router.post("/signUp/", response_model=User)
@@ -59,40 +64,36 @@ async def create_todo(user: User, session: Annotated[Session, Depends(get_sessio
 
 
 
-# @router.put("/todos/{todo_id}", response_model=Product)
-# async def update_todo(todo_id: int, todo: ProductUpdate, session: Annotated[Session, Depends(get_session)],producer: Annotated[AIOKafkaProducer, Depends(get_kafka_producer)]):
-#         # product_to_update = session.get(Product, todo_id)
-#         query = select (Product).where(Product.id == todo_id)
-#         product_to_update = session.exec(query).one_or_none()
-#         print("\n\n product_to_update \n\n", product_to_update )
-#         if not product_to_update:
-#             raise HTTPException(status_code=404, detail="Product not found")
+@router.put("/users/{user_id}", response_model=UserUpdate)
+async def update_todo(user_id: int, user: UserUpdate, session: Annotated[Session, Depends(get_session)]):
+       updated_user = update_user_by_id(id=user_id, user=user, session=session)
+       return updated_user
+         
 
-#         hero_data = todo.model_dump(exclude_unset=True)
-#         updated_product = product_to_update.sqlmodel_update(hero_data)
-#         print("\n\n updated_product\n\n",updated_product)
-#         print("\n\n product type\n\n",type(updated_product))
-
-#         session.add(updated_product)
-#         session.commit()
-
-#         return updated_product
-
-# @router.delete("/todos/{todo_id}", response_model=Product)
-# async def delete_todo(todo_id: int, session: Annotated[Session, Depends(get_session)]):
-#         todo_to_delete = session.get(Product, todo_id)
-#         if not todo_to_delete:
-#             raise HTTPException(status_code=404, detail="Product not found")
-#         session.delete(todo_to_delete)
-#         session.commit()
-#         return todo_to_delete   
+@router.delete("/user/{user_id}", response_model=User)
+async def delete_user(user_id: int, session: Annotated[Session, Depends(get_session)]):
+        todo_to_delete = delete_user_by_id(id=user_id, session=session)
+        return todo_to_delete   
 
 
-# @router.post("/todos/{todo_id}/ratings", response_model=ProductRating)
-# async def add_product_rating(todo_id: int, product_rating: ProductRating, session: Annotated[Session, Depends(get_session)],producer: Annotated[AIOKafkaProducer, Depends(get_kafka_producer)]):
-#         func_return =await add_product_rating_func(todo_id, product_rating, session,producer)
-#         return func_return
 
 # @router.get("/gpt")
 # def get_ai_response(main_request: str, session: Annotated[Session, Depends(get_session)],producer: Annotated[AIOKafkaProducer, Depends(get_kafka_producer)]):
 #     return run_conversation(main_request)
+
+
+
+@router.post("/login/")
+def user_login(form_data: Annotated[OAuth2PasswordRequestForm, Depends(OAuth2PasswordRequestForm)], session: Annotated[Session, Depends(get_session)]):
+    ret = login(user_data=form_data, session=session)
+    return ret
+
+# token validation with jwt
+@router.get("/decode_token")
+def decode_token(token: str):
+# def decode_token(token: Annotated[str, Depends(OAuth2PasswordBearer)]):
+    try:
+        decoded_token_data  = decode_access_token(token=token)
+        return {"decoded_token": decoded_token_data}     
+    except JWTError as e:   
+        return {"error": str(e)} 

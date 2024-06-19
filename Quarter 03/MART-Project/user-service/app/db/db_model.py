@@ -9,3 +9,8 @@ class User(SQLModel, table=True):
     password: str
     is_active: bool = Field(default=True)
 
+class UserUpdate(SQLModel):
+    username: Optional[str] = None
+    email: Optional[str] = None
+    password: Optional[str] = None
+    is_active: Optional[bool] = None
