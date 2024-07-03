@@ -37,6 +37,19 @@ services:
     ports:
       - "8012:8000"  # Expose container port 8000 to host port 8000  
 
+  orderservice:
+      build:
+        context: ./order-service
+        dockerfile: Dockerfile.dev
+      volumes:
+        - ./order-service:/code  # Sync local development directory with the container
+      depends_on:
+          - orderservicedb
+          - broker
+      ports:
+        - "8013:8000"  # Expose container port 8000 to host port 8012  
+
+
   productservicedb:
     image: postgres:latest  # Use the official PostgreSQL image
     restart: always
@@ -75,6 +88,20 @@ services:
         - '5436:5432'
     volumes:
         - postgres_user_db:/var/lib/postgresql/data
+
+  orderservicedb:
+    image: postgres:latest  # Use the official PostgreSQL image
+    restart: always
+    container_name: orderservicedb
+    environment:
+        - POSTGRES_USER=ziakhan
+        - POSTGRES_PASSWORD=my_password
+        - POSTGRES_DB=mydatabase
+    ports:
+        - '5437:5432'
+    volumes:
+        - postgres_order_db:/var/lib/postgresql/data
+
 
   broker:
     image: apache/kafka:3.7.0
@@ -128,6 +155,8 @@ volumes:
   postgres_inventory_db:
     driver: local
   postgres_user_db:
+    driver: local
+  postgres_order_db:
     driver: local
 
 networks:
