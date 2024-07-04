@@ -49,6 +49,18 @@ services:
       ports:
         - "8013:8000"  # Expose container port 8000 to host port 8012  
 
+  paymentservice:
+        build:
+          context: ./payment-service
+          dockerfile: Dockerfile.dev
+        volumes:
+          - ./payment-service:/code  # Sync local development directory with the container
+        depends_on:
+            - paymentservicedb
+            - broker
+        ports:
+          - "8014:8000"  # Expose container port 8000 to host port 8012  
+
 
   productservicedb:
     image: postgres:latest  # Use the official PostgreSQL image
@@ -101,6 +113,19 @@ services:
         - '5437:5432'
     volumes:
         - postgres_order_db:/var/lib/postgresql/data
+
+  paymentservicedb:
+    image: postgres:latest  # Use the official PostgreSQL image
+    restart: always
+    container_name: paymentservicedb
+    environment:
+        - POSTGRES_USER=ziakhan
+        - POSTGRES_PASSWORD=my_password
+        - POSTGRES_DB=mydatabase
+    ports:
+        - '5438:5432'
+    volumes:
+        - postgres_payment_db:/var/lib/postgresql/data
 
 
   broker:
@@ -157,6 +182,8 @@ volumes:
   postgres_user_db:
     driver: local
   postgres_order_db:
+    driver: local
+  postgres_payment_db:
     driver: local
 
 networks:
