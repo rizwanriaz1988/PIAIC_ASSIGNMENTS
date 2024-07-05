@@ -8,3 +8,6 @@ solution = use 127.0.0.1 instead of localhost
 # apiroute was not written properly 
 
 # in db have to write "select * from  public.user "
+
+
+# when you do session_add and session_commit(xyz) then xyz becomes empty so you have to add session_refresh(xyz) after that

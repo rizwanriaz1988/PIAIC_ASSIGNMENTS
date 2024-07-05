@@ -12,7 +12,7 @@ from jose import JWTError
 
 from app.db.db_engine import get_session
 from app.kafka.producer import get_kafka_producer
-from app.db.db_model import ItemOrder,ItemOrderUpdate
+from app.db.db_model import PaymentOrder,PaymentOrderStatus
 from app.api.crud import get_all_item_orders,add_item_order,get_order_by_id,delete_order_by_id,update_item_order_by_id
 
 
@@ -39,42 +39,42 @@ def add_new_product(product_data, session: Session):
 
 @router.get("/")
 def read_root():
-    return {"Hello": "Order Service hello!!"}
+    return {"Hello": "Payment Service hello!!"}
 
 
-@router.get("/orders/", response_model=list[ItemOrder])
+@router.get("/orders/", response_model=list[PaymentOrder])
 # def read_todos(token: Annotated[str, Depends(oauth2_scheme)], session: Annotated[Session, Depends(get_session)]):
-def read_todos( session: Annotated[Session, Depends(get_session)]):
+def read_todos(session: Annotated[Session, Depends(get_session)]):
         # user_token_data = decode_access_token(token=token)
         # user_in_db = fake_user_check(user_data=user_token_data["sub"],session= session)
         all_orders = get_all_item_orders(session)
         return all_orders
 
 
-@router.get("/order/{order_id}", response_model=ItemOrder)
+@router.get("/order/{order_id}", response_model=PaymentOrder)
 def read_order_by_id(order_id: int, session: Annotated[Session, Depends(get_session)]):
         order = get_order_by_id(id=order_id, session=session)
         return order
 
 
-@router.post("/order/", response_model=ItemOrder)
-async def add_item_order_api(order: ItemOrder, session: Annotated[Session, Depends(get_session)], producer: Annotated[AIOKafkaProducer, Depends(get_kafka_producer)])->ItemOrder:
-        new_order = await add_item_order(order=order, session=session,  producer=producer)
-        return new_order
+# @router.post("/order/", response_model=PaymentOrder)
+# async def add_item_order_api(order: PaymentOrder, session: Annotated[Session, Depends(get_session)], producer: Annotated[AIOKafkaProducer, Depends(get_kafka_producer)])->PaymentOrder:
+#         new_order = await add_item_order(order=order, session=session,  producer=producer)
+#         return new_order
 
 
 
 
-@router.put("/orders/{order_id}", response_model=ItemOrderUpdate)
-async def update_todo(order_id: int, order: ItemOrderUpdate, session: Annotated[Session, Depends(get_session)]):
-       updated_order = update_item_order_by_id(id=order_id, order=order, session=session)
+@router.put("/orders/{order_id}", response_model=PaymentOrder)
+async def update_todo(order_id: int, order: PaymentOrderStatus, session: Annotated[Session, Depends(get_session)], producer: Annotated[AIOKafkaProducer, Depends(get_kafka_producer)])->PaymentOrder:
+       updated_order = await update_item_order_by_id(id=order_id, order=order, session=session, producer=producer)
        return updated_order
          
 
-@router.delete("/order/{order_id}", response_model=ItemOrder)
-async def delete_order(order_id: int, session: Annotated[Session, Depends(get_session)]):
-        order_to_delete = delete_order_by_id(id=order_id, session=session)
-        return order_to_delete   
+# @router.delete("/order/{order_id}", response_model=PaymentOrder)
+# async def delete_order(order_id: int, session: Annotated[Session, Depends(get_session)]):
+#         order_to_delete = delete_order_by_id(id=order_id, session=session)
+#         return order_to_delete   
 
 
 

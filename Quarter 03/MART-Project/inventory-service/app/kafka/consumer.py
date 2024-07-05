@@ -33,7 +33,11 @@ async def consume_messages(topic, bootstrap_servers):
 
             with next(get_session()) as session:
                 print("SAVING DATA TO DATABASE")
-                mapped_data = {field_mapping[key]: value for key, value in product_data.items() if key in field_mapping}
+                # mapped_data = {field_mapping[key]: value for key, value in product_data.items() if key in field_mapping}
+                mapped_data = {}
+                for key, value in product_data.items():
+                    if key in field_mapping:
+                        mapped_data[field_mapping[key]] = value
                 product_to_update = ProductInventory(**mapped_data)
                 # product_to_update = ProductInventory(**{key: value for key, value in product_data.items() if key in ("id")})
                 print("\n product_to_update \n", product_to_update)

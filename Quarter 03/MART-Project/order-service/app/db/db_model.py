@@ -15,7 +15,7 @@ class ItemOrderUpdate(SQLModel):
     product_id: int = None
     user_id: int = None
     quantity: int = None
-    amount: float = None
+    amount: int = None
     status: str = None
 
 # class OrderStatus(SQLModel, table=True):

@@ -17,7 +17,7 @@ from app.kafka.consumer import consume_messages
 
 @asynccontextmanager
 async def lifespan(app: FastAPI)-> AsyncGenerator[None, None]:
-    print("Creating tables !!!___")
+    print("Creating tables #####")
     create_db_and_tables()
     task1 = asyncio.create_task(consume_messages('orders', 'broker:19092'))
     yield
@@ -27,7 +27,7 @@ app = FastAPI(lifespan=lifespan, title="Hello World API with DB",
     version="0.0.1",
     servers=[
         {
-            "url": "http://127.0.0.1:8013", # ADD NGROK URL Here Before Creating GPT Action
+            "url": "http://127.0.0.1:8014", # ADD NGROK URL Here Before Creating GPT Action
             "description": "Development Server"
         }
         ])

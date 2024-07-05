@@ -3,7 +3,7 @@ from aiokafka import AIOKafkaConsumer
 import json
 
 from app.db.db_engine import get_session
-from app.db.db_model import ItemOrder
+from app.db.db_model import PaymentOrder
 from app.api.routes import add_new_product
 
 async def consume_messages(topic, bootstrap_servers):
@@ -11,9 +11,11 @@ async def consume_messages(topic, bootstrap_servers):
     consumer = AIOKafkaConsumer(
         topic,
         bootstrap_servers=bootstrap_servers,
-        group_id="orders-group",
+        group_id="payment-group",
         auto_offset_reset='earliest'
     )
+
+    field_mapping = {"id": "itemOrder_id", "user_id": "user_id", "product_id": "product_id", "amount": "amount", "status": "status"}
 
     # Start the consumer.
     await consumer.start()
@@ -30,7 +32,17 @@ async def consume_messages(topic, bootstrap_servers):
             with next(get_session()) as session:
                 print("SAVING DATA TO DATABASE")
                 # to convert dict to json
-                db_insert_user = add_new_product(product_data=ItemOrder(**user_data), session=session)
+                mapped_data = {}
+                for key, value in user_data.items():
+                    if key in field_mapping:
+                        mapped_data[field_mapping[key]] = value
+
+                print("\n===Mapped Data===\n", mapped_data)
+                retrieve_data = PaymentOrder(**mapped_data)
+
+                print("\n===Retrieve Data===\n", retrieve_data)
+
+                db_insert_user = add_new_product(product_data=retrieve_data, session=session)
                 print("DB_INSERT_user", db_insert_user)
 
             # Here you can add code to process each message.
