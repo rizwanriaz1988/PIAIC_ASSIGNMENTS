@@ -61,6 +61,18 @@ services:
         ports:
           - "8014:8000"  # Expose container port 8000 to host port 8012  
 
+  notificationservice:
+          build:
+            context: ./notification-service
+            dockerfile: Dockerfile.dev
+          volumes:
+            - ./notification-service:/code  # Sync local development directory with the container
+          depends_on:
+              - notificationservicedb
+              - broker
+          ports:
+            - "8015:8000"  # Expose container port 8000 to host port 8012  
+
 
   productservicedb:
     image: postgres:latest  # Use the official PostgreSQL image
@@ -127,6 +139,19 @@ services:
     volumes:
         - postgres_payment_db:/var/lib/postgresql/data
 
+  notificationservicedb:
+    image: postgres:latest  # Use the official PostgreSQL image
+    restart: always
+    container_name: notificationservicedb
+    environment:
+        - POSTGRES_USER=ziakhan
+        - POSTGRES_PASSWORD=my_password
+        - POSTGRES_DB=mydatabase
+    ports:
+        - '5439:5432'
+    volumes:
+        - postgres_notification_db:/var/lib/postgresql/data
+
 
   broker:
     image: apache/kafka:3.7.0
@@ -184,6 +209,8 @@ volumes:
   postgres_order_db:
     driver: local
   postgres_payment_db:
+    driver: local
+  postgres_notification_db:
     driver: local
 
 networks:

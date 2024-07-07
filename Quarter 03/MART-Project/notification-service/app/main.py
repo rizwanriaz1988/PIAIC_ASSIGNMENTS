@@ -7,7 +7,7 @@ import asyncio
 # other imports
 from app.db.db_engine import create_db_and_tables
 from app.api.routes import router as product_router
-from app.kafka.consumer import consume_messages
+from app.kafka.consumer import  consume_messages_from_order, consume_messages_from_payment
 
 # The first part of the function, before the yield, will
 # be executed before the application starts.
@@ -17,9 +17,10 @@ from app.kafka.consumer import consume_messages
 
 @asynccontextmanager
 async def lifespan(app: FastAPI)-> AsyncGenerator[None, None]:
-    print("Creating tables #######")	
+    print("Creating tables #@@@")	
     create_db_and_tables()
-    task1 = asyncio.create_task(consume_messages('orders', 'broker:19092'))
+    task1 = asyncio.create_task(consume_messages_from_order('orders', 'broker:19092'))
+    task2 = asyncio.create_task(consume_messages_from_payment('payment', 'broker:19092'))
     yield
 
 
@@ -27,7 +28,7 @@ app = FastAPI(lifespan=lifespan, title="Hello World API with DB",
     version="0.0.1",
     servers=[
         {
-            "url": "http://127.0.0.1:8014", # ADD NGROK URL Here Before Creating GPT Action
+            "url": "http://127.0.0.1:8015", # ADD NGROK URL Here Before Creating GPT Action
             "description": "Development Server"
         }
         ])
