@@ -10,7 +10,7 @@ import json
 
 
 from app.db.db_engine import get_session
-# from app.db.db_model import PaymentOrder
+from app.db.db_model import NotifyUser
 from app.auth.acc_token import create_access_token
 
 
@@ -56,15 +56,20 @@ async def add_item_order( order, session, producer ):
         
 #         return updated_order
         
-# def get_all_item_orders(session):
-#         query = select(PaymentOrder)
-#         orders = session.exec(query).all()
-#         return orders
+def get_all_notifications_sent(session):
+        query = select(NotifyUser)
+        orders = session.exec(query).all()
+        return orders
 
-# def get_order_by_id(id , session):
-#         query = select(PaymentOrder).where(PaymentOrder.id == id)
-#         order = session.exec(query).one()
-#         return order
+def get_notification_by_id(id , session):
+        query = select(NotifyUser).where(NotifyUser.id == id)
+        order = session.exec(query).one()
+        return order
+
+def get_order_status(id , session):
+        query = select(NotifyUser).where(NotifyUser.itemOrder_id == id)
+        order = session.exec(query).all()
+        return order
 
 # def delete_order_by_id(id , session):
 #         query = select(PaymentOrder).where(PaymentOrder.id == id)

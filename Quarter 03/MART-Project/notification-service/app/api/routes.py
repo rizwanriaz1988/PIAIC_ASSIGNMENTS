@@ -12,8 +12,8 @@ from jose import JWTError
 
 from app.db.db_engine import get_session
 from app.kafka.producer import get_kafka_producer
-# from app.db.db_model import PaymentOrder,PaymentOrderStatus
-# from app.api.crud import get_all_item_orders,add_item_order,get_order_by_id,delete_order_by_id,update_item_order_by_id
+from app.db.db_model import NotifyUser
+from app.api.crud import get_all_notifications_sent,get_notification_by_id,get_order_status
 # from app.global_var import latest_message_from_order
 import app.global_var as global_var
 
@@ -42,22 +42,26 @@ def add_new_product(product_data, session: Session):
 @router.get("/")
 def read_root():
     return {"Notification Service": global_var.latest_message_from_order}	
-    # return {"Hello": "Notification Service hello!!"}	
 
 
-# @router.get("/orders/", response_model=list[PaymentOrder])
-# # def read_todos(token: Annotated[str, Depends(oauth2_scheme)], session: Annotated[Session, Depends(get_session)]):
-# def read_todos(session: Annotated[Session, Depends(get_session)]):
-#         # user_token_data = decode_access_token(token=token)
-#         # user_in_db = fake_user_check(user_data=user_token_data["sub"],session= session)
-#         all_orders = get_all_item_orders(session)
-#         return all_orders
+@router.get("/notifications/", response_model=list[NotifyUser])
+# def read_todos(token: Annotated[str, Depends(oauth2_scheme)], session: Annotated[Session, Depends(get_session)]):
+def all_notifications_sent(session: Annotated[Session, Depends(get_session)]):
+        # user_token_data = decode_access_token(token=token)
+        # user_in_db = fake_user_check(user_data=user_token_data["sub"],session= session)
+        all_orders = get_all_notifications_sent(session)
+        return all_orders
 
 
-# @router.get("/order/{order_id}", response_model=PaymentOrder)
-# def read_order_by_id(order_id: int, session: Annotated[Session, Depends(get_session)]):
-#         order = get_order_by_id(id=order_id, session=session)
-#         return order
+@router.get("/notification/{notification_id}", response_model=NotifyUser)
+def notification_by_id(notification_id: int, session: Annotated[Session, Depends(get_session)]):
+        order = get_notification_by_id(id=notification_id, session=session)
+        return order
+
+@router.get("/notification/orderstatus/{order_id}", response_model=list[NotifyUser])
+def order_status(order_id: int, session: Annotated[Session, Depends(get_session)]):
+        order = get_order_status(id=order_id, session=session)
+        return order
 
 
 # @router.post("/order/", response_model=PaymentOrder)

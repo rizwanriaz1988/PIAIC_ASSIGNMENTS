@@ -4,6 +4,7 @@
         "apiroute",
         "dbengine",
         "Manu",
-        "openai"
+        "openai",
+        "orderstatus"
     ]
 }

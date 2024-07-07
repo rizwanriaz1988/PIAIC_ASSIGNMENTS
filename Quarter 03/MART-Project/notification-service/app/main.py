@@ -17,14 +17,14 @@ from app.kafka.consumer import  consume_messages_from_order, consume_messages_fr
 
 @asynccontextmanager
 async def lifespan(app: FastAPI)-> AsyncGenerator[None, None]:
-    print("Creating tables #@@@")	
+    print("Creating tables #@@8759@")	
     create_db_and_tables()
     task1 = asyncio.create_task(consume_messages_from_order('orders', 'broker:19092'))
     task2 = asyncio.create_task(consume_messages_from_payment('payment', 'broker:19092'))
     yield
 
 
-app = FastAPI(lifespan=lifespan, title="Hello World API with DB", 
+app = FastAPI(lifespan=lifespan, title="MART Notification Microservice", 
     version="0.0.1",
     servers=[
         {
