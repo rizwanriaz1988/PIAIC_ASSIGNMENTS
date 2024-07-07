@@ -11,3 +11,5 @@ solution = use 127.0.0.1 instead of localhost
 
 
 # when you do session_add and session_commit(xyz) then xyz becomes empty so you have to add session_refresh(xyz) after that
+
+# sue [] notation for dictionary

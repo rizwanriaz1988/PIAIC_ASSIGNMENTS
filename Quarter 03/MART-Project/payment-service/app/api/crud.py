@@ -43,6 +43,7 @@ async def update_item_order_by_id(id , order , session , producer):
         session.refresh(updated_order)
 
         # Serialize updated_order with custom encoders for datetime
+        
         print("0",updated_order)
         order_dict = updated_order.dict()
         print("1",order_dict)
