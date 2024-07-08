@@ -23,7 +23,7 @@ async def lifespan(app: FastAPI)-> AsyncGenerator[None, None]:
     yield
 
 
-app = FastAPI(lifespan=lifespan, title="Hello World API with DB", 
+app = FastAPI(lifespan=lifespan, title="MART Payment Microservice", 
     version="0.0.1",
     servers=[
         {

@@ -1,4 +1,6 @@
 # consumer.py
+import requests
+import httpx
 from aiokafka import AIOKafkaConsumer
 import json
 
@@ -7,6 +9,14 @@ from app.db.db_model import NotifyUser
 from app.api.routes import add_new_product
 # from app.global_var import latest_message_from_order
 import app.global_var as global_var
+
+
+# Async function to call another microservice
+# async def get_user_details(user_id: int):
+#     async with httpx.AsyncClient() as client:
+#         response = await client.get(f"http://user_service:8000/users/{user_id}")
+#         response.raise_for_status()
+#         return response.json()
 
 
 async def consume_messages_from_order(topic, bootstrap_servers):
@@ -20,6 +30,7 @@ async def consume_messages_from_order(topic, bootstrap_servers):
         auto_offset_reset='earliest'
     )
 
+    
 
     # field_mapping = {"id": "itemOrder_id", "user_id": "user_id", "product_id": "product_id", "amount": "amount", "status": "status"}
     field_mapping = {"id": "itemOrder_id"}
@@ -33,7 +44,28 @@ async def consume_messages_from_order(topic, bootstrap_servers):
             print(f"Received message on topic {message.topic}")
 
             user_data = json.loads(message.value.decode())
-            complete_msg = f"Dear {user_data.get("user_id")}, your order with order id # {user_data.get("id")} has been successfully placed. You will receive another notification once your order is processed. Current status: {user_data.get('status')}"
+            #  get data from user service
+            user_id = user_data.get("user_id")
+            #  call user microservice
+            # api = f"http://localhost:8012/user/{user_id}"
+            api = f"http://userservice:8000/user/{user_id}"
+            print("API", api)
+            # async with httpx.AsyncClient() as client:
+            #     response = await client.get(api)
+            #     response.raise_for_status()
+            #     user_info = response.json()
+            
+            # print("API_RESPONSE", user_info)
+
+            try:
+                api_response =requests.get(api)
+                print("API_RESPONSE", api_response)
+                user_info = api_response.json()
+                print("USER_INFO", user_info)
+            except Exception as e:
+                print("ERROR", e)
+
+            complete_msg = f"Dear {user_info.get("username")}, your order with order id # {user_data.get("id")} has been successfully placed. You will receive another notification once your order is processed. Current status: {user_data.get('status')}"
             global_var.latest_message_from_order = complete_msg
             print("LATEST from Order Service", global_var.latest_message_from_order)
             # print("TYPE", (type(user_data)))
@@ -65,13 +97,6 @@ async def consume_messages_from_order(topic, bootstrap_servers):
     finally:
         # Ensure to close the consumer when done.
         await consumer.stop()
-
-
-
-
-
-
-
 
 
 
@@ -131,3 +156,7 @@ async def consume_messages_from_payment(topic, bootstrap_servers):
     finally:
         # Ensure to close the consumer when done.
         await consumer.stop()
+
+
+
+

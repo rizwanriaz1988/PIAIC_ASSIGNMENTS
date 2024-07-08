@@ -3,6 +3,7 @@
         "aiokafka",
         "apiroute",
         "dbengine",
+        "httpx",
         "Manu",
         "openai",
         "orderstatus"
