@@ -7,7 +7,7 @@ import asyncio
 # other imports
 from app.db.db_engine import create_db_and_tables
 from app.api.routes import router as product_router
-from app.kafka.consumer import  consume_messages_from_order, consume_messages_from_payment
+from app.kafka.consumer import  consume_messages_from_order, consume_messages_from_payment,consume_messages_from_user
 
 # The first part of the function, before the yield, will
 # be executed before the application starts.
@@ -17,10 +17,12 @@ from app.kafka.consumer import  consume_messages_from_order, consume_messages_fr
 
 @asynccontextmanager
 async def lifespan(app: FastAPI)-> AsyncGenerator[None, None]:
-    print("Creating tables #@@7787878@")	
+    print("Creating tables #@wwee@")	
     create_db_and_tables()
     task1 = asyncio.create_task(consume_messages_from_order('orders', 'broker:19092'))
     task2 = asyncio.create_task(consume_messages_from_payment('payment', 'broker:19092'))
+    task3 = asyncio.create_task(consume_messages_from_user('users', 'broker:19092'))
+
     yield
 
 

@@ -14,4 +14,9 @@ class NotifyUser(SQLModel, table=True):
     msg_sent_at: datetime = Field(default_factory=datetime.utcnow)
     
 
-    
+class User(SQLModel, table=True):
+    id: Optional[int] = Field(default=None, primary_key=True)
+    username: str
+    email: str
+    password: str
+    is_active: bool = Field(default=True)

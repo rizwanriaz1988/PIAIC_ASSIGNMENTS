@@ -17,7 +17,7 @@ from app.kafka.consumer import consume_messages, consume_order_status_messages_f
 
 @asynccontextmanager
 async def lifespan(app: FastAPI)-> AsyncGenerator[None, None]:
-    print("Creating tables !!!!!")
+    print("Creating tables !!!22!!")
     create_db_and_tables()
     task1 = asyncio.create_task(consume_messages('orders', 'broker:19092'))
     task2 = asyncio.create_task(consume_order_status_messages_from_payment('payment', 'broker:19092'))

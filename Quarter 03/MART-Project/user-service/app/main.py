@@ -17,7 +17,7 @@ from app.kafka.consumer import consume_messages
 
 @asynccontextmanager
 async def lifespan(app: FastAPI)-> AsyncGenerator[None, None]:
-    print("Creating tables !!!!! ")
+    print("Creating tables !!!2233!! ")
     create_db_and_tables()
     task1 = asyncio.create_task(consume_messages('users', 'broker:19092'))
     yield

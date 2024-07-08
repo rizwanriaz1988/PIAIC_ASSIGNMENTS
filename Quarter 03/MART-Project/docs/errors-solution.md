@@ -16,3 +16,6 @@ solution = use 127.0.0.1 instead of localhost
 
 #  Create a NotifyUser instance before saving to database
                 notify_user = NotifyUser(**db_data)
+
+
+# db output is accessed with . notation
