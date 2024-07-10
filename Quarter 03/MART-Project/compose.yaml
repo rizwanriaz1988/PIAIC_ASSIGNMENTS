@@ -197,6 +197,13 @@ services:
       PGADMIN_DEFAULT_PASSWORD: admin
 
 
+
+
+
+
+
+
+
 volumes:
   postgres_db:
     driver: local
