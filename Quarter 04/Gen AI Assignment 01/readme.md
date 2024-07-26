@@ -5,4 +5,4 @@
 - Generative AI is a sub field of Artificial intelligence in which data like text, audio, images, video is generated on the same pattern as it was trained.
 - A system which apply this artificial intelligence to solve real world problems is known as applied artificial intelligence.
 
-![alt text](AI Model.png)
+![alt text](ai.png)
