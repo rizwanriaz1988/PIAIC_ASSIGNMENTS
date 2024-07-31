@@ -12,7 +12,7 @@
 # Calculate the sum of the two numbers.
 # Print the total sum with an appropriate message.
 
-first_number = int(input("Enter first number: "))
-second_number = int(input("Enter second number: "))
+first_number:int = int(input("Enter first number: "))
+second_number:int = int(input("Enter second number: "))
 sum = first_number + second_number
 print("The sum of {0} and {1} is {2}".format(first_number, second_number, sum))

@@ -11,8 +11,8 @@
 
 # The perimeter of the triangle is 12.5
 
-side_1 = float(input("What is the length of side 1? "))
-side_2 = float(input("What is the length of side 2? "))
-side_3 = float(input("What is the length of side 3? "))
-perimeter = (side_1 + side_2 + side_3)
+side_1:float = float(input("What is the length of side 1? "))
+side_2:float = float(input("What is the length of side 2? "))
+side_3:float = float(input("What is the length of side 3? "))
+perimeter:float = (side_1 + side_2 + side_3)
 print(f"The perimeter of the triangle is {perimeter}")

@@ -10,10 +10,10 @@
 # Here's the list: ['1', '2', '3']
 
 
-user_infinite_list  = []
+user_infinite_list:list[str|int]  = []
 
 while True:
-    user_input = input("Enter a value: ")
+    user_input:str|int = input("Enter a value: ")
     if user_input != "":
         user_infinite_list.append(user_input)   
     else:

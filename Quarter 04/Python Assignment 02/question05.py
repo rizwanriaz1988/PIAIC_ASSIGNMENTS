@@ -7,6 +7,6 @@
 
 # 4.0 squared is 16.0
 
-num = float(input("Type a number to see its square: "))
-square = num * num
+num:float = float(input("Type a number to see its square: "))
+square:float = num * num
 print(f"{num} squared is {square}")

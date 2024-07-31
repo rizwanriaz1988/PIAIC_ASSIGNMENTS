@@ -15,6 +15,6 @@
 
 # Temperature: 76.0F = 24.444444444444443C
 
-temp = float(input("Enter temperature in Fahrenheit: "))
+temp:float = float(input("Enter temperature in Fahrenheit: "))
 temp_c = (temp - 32) * 5.0 / 9.0
 print(f"Temperature: {temp}F = {temp_c}C")

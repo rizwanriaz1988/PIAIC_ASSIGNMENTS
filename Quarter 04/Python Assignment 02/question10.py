@@ -3,10 +3,10 @@
 
 
 
-user_list = []
-num = int(input("Enter number of elements in list: "))
+user_list:list[str|int] = []
+num:int = int(input("Enter number of elements in list: "))
 for i in range(0, num):
-    ele = int(input("Enter elements: "))
+    ele = input("Enter elements: ")
     user_list.append(ele)
 print("User List is: ", user_list)
 
