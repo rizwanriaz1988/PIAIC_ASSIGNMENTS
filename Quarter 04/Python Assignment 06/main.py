@@ -10,7 +10,7 @@ short_name_length:int = float('inf')  # Set to a large initial value
 long_name:str = ""
 short_name:str = ""
 
-
+# user input with choice
 def get_user_choice():
         choice:str = questionary.select(
             "Please choose an option:",
@@ -23,6 +23,7 @@ def get_user_choice():
 
 user_choice = get_user_choice()
 
+# main program
 while user_choice != "Stop":
     std_name = input("Enter student name: ")
 
@@ -58,7 +59,7 @@ else:
             long_name_length = len(student[0])
             long_name = student[0]
 
-        if len(student[0]) < short_name_length:
+        if len(student[0]) <= short_name_length:
             short_name_length = len(student[0])
             short_name = student[0]
         
