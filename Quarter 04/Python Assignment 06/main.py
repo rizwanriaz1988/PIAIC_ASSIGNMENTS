@@ -63,7 +63,7 @@ else:
             short_name_length = len(student[0])
             short_name = student[0]
         
-
+print("Total number of students:",len(std_tuple_list))
 print("Total length of all student names combined:",chr_length)
 print("The student with the longest name is",long_name)
 print("The student with the shortest name is",short_name)
