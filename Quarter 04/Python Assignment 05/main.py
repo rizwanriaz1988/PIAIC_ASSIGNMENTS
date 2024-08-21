@@ -1,24 +1,27 @@
-import random
-import questionary
-from blessed import Terminal
+import random # for random number
+import questionary # for user input with choices
+from blessed import Terminal # for colors
 
 
 # Welcome message
 print(Terminal().blue("\nWelcome to Higher or Lower!"))
 print(Terminal().blue("---------------------------"))
 
+
+# variables
 points: int = 0
 start_num: int = 1
 end_num: int = 100
 rounds: int = 10
 
+# function to check that both are not equal
 def get_user_num(start: int, end: int,comp_num: int):
         user_num: int = random.randint(start, end)
         while user_num == comp_num:
             user_num = random.randint(start, end)
         return user_num
 
-# As rounds are 5
+# for loop for rounds
 for i in range(1, rounds + 1):
     print(Terminal().yellow("==========="))
     print(Terminal().yellow(f"Round: {i}"))
