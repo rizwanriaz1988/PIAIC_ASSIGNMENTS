@@ -6,3 +6,9 @@ After creating the GPT, test its full functionality by engaging in a chat with i
 Link to your chat with the GPT
 Note:
 If you have any questions or encounter any confusion, feel free to contact me.
+
+===============
+S O L U T I O N
+===============
+
+https://chatgpt.com/share/3a8148ae-13c0-4079-9f17-e3386a484bb0
